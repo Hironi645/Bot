@@ -153,18 +153,28 @@ const toast = msg => {
   setTimeout(()=>t.classList.remove("show"),2500);
 };
 
-// cek kata masuk akal (bukan acak)
-function validText(teks){
-  teks = teks.trim().toLowerCase();
+// DETEKSI KATA ACAK / GIBBERISH
+function isHumanText(text){
+  text = text.trim().toLowerCase();
 
-  // minimal 6 huruf & ada vokal
-  const adaVokal = /[aiueo]/.test(teks);
-  const cukupPanjang = teks.length >= 6;
+  // minimal 2 kata
+  if(text.split(" ").length < 2) return false;
 
-  // atau minimal 2 kata
-  const duaKata = teks.split(" ").length >= 2;
+  // hanya huruf & spasi
+  if(!/^[a-z\s]+$/.test(text)) return false;
 
-  return (adaVokal && cukupPanjang) || duaKata;
+  // cek keseimbangan vokal & konsonan
+  const vokal = text.match(/[aiueo]/g)?.length || 0;
+  const konsonan = text.match(/[bcdfghjklmnpqrstvwxyz]/g)?.length || 0;
+  if(vokal < 2 || konsonan < 3) return false;
+
+  // cegah pola berulang (jsjsjs, ananan)
+  if(/(.{2,})\1{1,}/.test(text)) return false;
+
+  // cegah konsonan beruntun panjang
+  if(/[bcdfghjklmnpqrstvwxyz]{4,}/.test(text)) return false;
+
+  return true;
 }
 
 function kirim(){
@@ -174,19 +184,18 @@ function kirim(){
   }
 
   const umurVal = parseInt(umur.value);
-
   if(umurVal < 10 || umurVal > 100){
     toast("⚠️ Umur harus antara 10 – 100 tahun");
     return;
   }
 
-  if(!validText(nama.value)){
-    toast("⚠️ Nama tidak valid, tulis dengan benar");
+  if(!isHumanText(nama.value)){
+    toast("⚠️ Nama tidak valid, tulis nama asli");
     return;
   }
 
-  if(!validText(alasan.value)){
-    toast("⚠️ Alasan terlalu asal / tidak jelas");
+  if(!isHumanText(alasan.value)){
+    toast("⚠️ Alasan tidak jelas / terdeteksi asal");
     return;
   }
 
@@ -221,6 +230,7 @@ STATUS : MENUNGGU PERSETUJUAN ADMIN
   );
 }
 </script>
+
 
 </body>
 </html>
