@@ -2,96 +2,169 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>DEVIL REIGN SQ HH</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEVIL REIGN — FROM INTRO</title>
 
 <style>
+:root{
+  --red:#ff1a1a;
+  --dark:#0b0b0b;
+  --card:#141414;
+  --border:#2a2a2a;
+}
+*{box-sizing:border-box}
 body{
-  background:#0a0a0a;
+  margin:0;
+  min-height:100vh;
+  background:radial-gradient(circle at top,#200000,#000);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto;
   color:#fff;
-  font-family:Arial, sans-serif;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
-.box{
-  max-width:500px;
-  margin:40px auto;
-  background:#111;
-  padding:20px;
-  border-radius:10px;
-  box-shadow:0 0 20px rgba(255,0,0,.4);
+.card{
+  width:100%;
+  max-width:480px;
+  background:var(--card);
+  padding:24px;
+  border-radius:14px;
+  box-shadow:0 0 35px rgba(255,0,0,.35);
 }
-h2{
+h1{
   text-align:center;
-  color:#ff0000;
+  margin:0;
+  color:var(--red);
+  letter-spacing:2px;
 }
-label{
-  display:block;
-  margin-top:12px;
+.subtitle{
+  text-align:center;
+  color:#aaa;
+  font-size:13px;
+  margin-bottom:18px;
 }
-input,textarea{
+.field{
+  margin-bottom:14px;
+}
+.field label{
+  font-size:13px;
+  color:#ccc;
+}
+.field input,
+.field textarea{
   width:100%;
   margin-top:6px;
-  padding:8px;
-  background:#1a1a1a;
-  border:1px solid #333;
+  padding:10px;
+  background:#0f0f0f;
+  border:1px solid var(--border);
+  border-radius:8px;
   color:#fff;
+  outline:none;
+}
+.field input:focus,
+.field textarea:focus{
+  border-color:var(--red);
 }
 button{
   width:100%;
   margin-top:20px;
-  padding:12px;
-  background:#ff0000;
+  padding:14px;
+  background:linear-gradient(135deg,#ff0000,#8b0000);
   border:none;
+  border-radius:10px;
   color:#fff;
   font-size:16px;
-  font-weight:bold;
+  font-weight:700;
   cursor:pointer;
 }
-button:hover{background:#cc0000}
+button:active{transform:scale(.98)}
 .footer{
+  margin-top:16px;
   text-align:center;
-  margin-top:15px;
   font-size:12px;
   color:#777;
+}
+
+/* toast */
+#toast{
+  position:fixed;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#111;
+  padding:12px 18px;
+  border-radius:10px;
+  border-left:4px solid var(--red);
+  box-shadow:0 0 15px rgba(255,0,0,.4);
+  opacity:0;
+  pointer-events:none;
+  transition:.35s ease;
+}
+#toast.show{
+  opacity:1;
+  top:35px;
 }
 </style>
 </head>
 
 <body>
-<div class="box">
-<h2>DEVIL REIGN — FORM MEMBER</h2>
 
-<label>Nama</label>
-<input id="nama">
+<div class="card">
+  <h1>DEVIL REIGN</h1>
+  <div class="subtitle">MEMBER FORM</div>
 
-<label>Umur</label>
-<input id="umur" type="number">
+  <div class="field">
+    <label>Nama</label>
+    <input id="nama" placeholder="Nama lengkap">
+  </div>
 
-<label>USN Hotel Hideaway</label>
-<input id="usn">
+  <div class="field">
+    <label>Umur</label>
+    <input id="umur" type="number" placeholder="Contoh: 19">
+  </div>
 
-<label>Asal Kota</label>
-<input id="kota">
+  <div class="field">
+    <label>USN Hotel Hideaway</label>
+    <input id="usn" placeholder="@username">
+  </div>
 
-<label>Alasan Bergabung</label>
-<textarea id="alasan"></textarea>
+  <div class="field">
+    <label>Asal Kota</label>
+    <input id="kota" placeholder="Kota asal">
+  </div>
 
-<button onclick="kirim()">DAFTAR DEVIL REIGN</button>
+  <div class="field">
+    <label>Alasan Bergabung</label>
+    <textarea id="alasan" rows="3" placeholder="Tulis alasan dengan jujur..."></textarea>
+  </div>
 
-<div class="footer">۝ Satu Reign, Satu Kekuasaan ۝ | Website by Hironi</div>
+  <button onclick="kirim()">DAFTAR DEVIL REIGN</button>
+
+  <div class="footer">۝ Satu Reign, Satu Kekuasaan ۝ | Website by Hironi</div>
 </div>
 
+<div id="toast"></div>
+
 <script>
+const toast = msg => {
+  const t = document.getElementById("toast");
+  t.innerText = msg;
+  t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"),2500);
+};
+
 function kirim(){
   if(!nama.value||!umur.value||!usn.value||!kota.value||!alasan.value){
-    alert("⚠️ Semua data wajib diisi.");
+    toast("⚠️ Semua data wajib diisi");
     return;
   }
 
-  let kode = "DR-" + Math.floor(1000 + Math.random()*9000);
+  const kode = "DR-" + Math.floor(1000 + Math.random() * 9000);
 
-  let pesan =
+  const pesan =
 `DEVIL REIGN — FORM MEMBER
 ━━━━━━━━━━━━━━━
-⌁ Kode : ${kode}
+⌁ Kode Daftar : ${kode}
 ⌁ Nama : ${nama.value}
 ⌁ Umur : ${umur.value}
 ⌁ USN Hotel Hideaway : ${usn.value}
@@ -100,15 +173,23 @@ function kirim(){
 ${alasan.value}
 ━━━━━━━━━━━━━━━
 PERATURAN DEVIL REIGN
-✦ saling menghormati
-✦ no keributan & spam
-✦ patuhi admin & owner
+✦ 1. saling menghormati dan menjaga sikap
+✦ 2. dilarang membuat keributan atau konflik
+✦ 3. gunakan bahasa yang sopan
+✦ 4. no spam / hoaks / link mencurigakan
+✦ 5. konten aman & pantas (NO 18+)
+✦ 6. patuhi admin & owner
+━━━━━━━━━━━━━━━
+STATUS : MENUNGGU PERSETUJUAN ADMIN
 ━━━━━━━━━━━━━━━
 ۝ Satu Reign, Satu Kekuasaan ۝`;
 
-  let wa = "https://wa.me/6282157298268?text=" + encodeURIComponent(pesan);
-  window.open(wa,"_blank");
+  window.open(
+    "https://wa.me/6282157298268?text=" + encodeURIComponent(pesan),
+    "_blank"
+  );
 }
 </script>
+
 </body>
 </html>
