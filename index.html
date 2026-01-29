@@ -2,106 +2,130 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>DEVIL REIGN — FORM MEMBER</title>
+<title>DEVIL REIGN — ELITE FORM</title>
+
 <style>
-body {
-  background:#0b0b0b;
-  color:#fff;
+body{
+  background:radial-gradient(circle at top,#200000,#000);
   font-family:Arial, sans-serif;
-}
-.container {
-  max-width:500px;
-  margin:40px auto;
-  background:#111;
-  padding:20px;
-  border-radius:10px;
-}
-h2 {
-  text-align:center;
-  color:#ff0000;
-}
-label {
-  display:block;
-  margin-top:12px;
-}
-input, textarea {
-  width:100%;
-  padding:8px;
-  margin-top:5px;
-  background:#1a1a1a;
-  border:1px solid #333;
   color:#fff;
 }
-button {
+.elite-box{
+  max-width:520px;
+  margin:50px auto;
+  background:#0e0e0e;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 0 30px rgba(255,0,0,0.5);
+}
+h1{
+  text-align:center;
+  color:#ff1a1a;
+  letter-spacing:2px;
+}
+p{
+  text-align:center;
+  color:#aaa;
+  font-size:14px;
+}
+label{
+  display:block;
+  margin-top:14px;
+}
+input, textarea{
   width:100%;
-  margin-top:20px;
-  padding:12px;
-  background:#ff0000;
+  padding:9px;
+  margin-top:6px;
+  background:#1a1a1a;
+  border:1px solid #400;
+  color:#fff;
+  border-radius:6px;
+}
+button{
+  width:100%;
+  margin-top:22px;
+  padding:14px;
+  background:linear-gradient(45deg,#ff0000,#800000);
   border:none;
   color:#fff;
-  font-size:16px;
+  font-size:17px;
+  font-weight:bold;
+  border-radius:8px;
   cursor:pointer;
 }
-button:hover {
-  background:#cc0000;
+button:hover{
+  opacity:0.9;
+}
+.footer{
+  text-align:center;
+  margin-top:15px;
+  font-size:12px;
+  color:#666;
 }
 </style>
 </head>
 
 <body>
-<div class="container">
-  <h2>DEVIL REIGN — FORM MEMBER</h2>
+<div class="elite-box">
+<h1>DEVIL REIGN</h1>
+<p>Elite Member Registration</p>
 
-  <label>Nama</label>
-  <input id="nama">
+<label>Nama</label>
+<input id="nama" placeholder="Nama kamu">
 
-  <label>Umur</label>
-  <input id="umur">
+<label>Umur</label>
+<input id="umur" type="number" placeholder="Contoh: 19">
 
-  <label>USN Hotel Hideaway</label>
-  <input id="usn">
+<label>USN Hotel Hideaway</label>
+<input id="usn" placeholder="@username">
 
-  <label>Asal Kota</label>
-  <input id="kota">
+<label>Asal Kota</label>
+<input id="kota" placeholder="Kota asal">
 
-  <label>Alasan Bergabung</label>
-  <textarea id="alasan"></textarea>
+<label>Alasan Bergabung</label>
+<textarea id="alasan" placeholder="Tulis alasan dengan serius..."></textarea>
 
-  <button onclick="kirim()">DAFTAR & JOIN GRUP</button>
+<button onclick="kirim()">DAFTAR ELITE DEVIL REIGN</button>
+
+<div class="footer">
+۝ Satu Reign, Satu Kekuasaan ۝
+</div>
 </div>
 
 <script>
-function kirim() {
+function kirim(){
+  if(!nama.value || !umur.value || !usn.value || !kota.value || !alasan.value){
+    alert("⚠️ Semua data wajib diisi.");
+    return;
+  }
+
+  let kode = "DR-" + Math.floor(1000 + Math.random()*9000);
+
   let pesan =
-`DEVIL REIGN — FORM MEMBER
+`DEVIL REIGN — FORM MEMBER [ELITE]
 ━━━━━━━━━━━━━━━
-⌁ nama : ${nama.value}
-⌁ umur : ${umur.value}
-⌁ usn hotel hideaway : ${usn.value}
-⌁ asal kota : ${kota.value}
-⌁ alasan bergabung dengan "Devil Reign" :
+⌁ Kode Daftar : ${kode}
+⌁ Nama : ${nama.value}
+⌁ Umur : ${umur.value}
+⌁ USN Hotel Hideaway : ${usn.value}
+⌁ Asal Kota : ${kota.value}
+⌁ Alasan Bergabung :
 ${alasan.value}
 ━━━━━━━━━━━━━━━
 PERATURAN DEVIL REIGN
 ✦ 1. saling menghormati dan menjaga sikap
-✦ 2. dilarang membuat keributan atau memancing konflik
-✦ 3. gunakan bahasa yang sopan dan nyaman
-✦ 4. hindari spam chat, vn, stiker, atau gif
-✦ 5. dilarang menyebarkan hoaks atau link mencurigakan
-✦ 6. konten harus aman dan pantas (no 18+)
-✦ 7. utamakan kerja sama dan solidaritas
-✦ 8. patuhi arahan admin dan owner
+✦ 2. dilarang membuat keributan atau konflik
+✦ 3. gunakan bahasa yang sopan
+✦ 4. no spam / hoaks / link mencurigakan
+✦ 5. konten aman & pantas (NO 18+)
+✦ 6. patuhi admin & owner
 ━━━━━━━━━━━━━━━
-
+STATUS : MENUNGGU PERSETUJUAN ADMIN
+━━━━━━━━━━━━━━━
 ۝ Satu Reign, Satu Kekuasaan ۝`;
 
-  navigator.clipboard.writeText(pesan).then(() => {
-    alert("Pesan berhasil disalin!\nSetelah masuk grup, tinggal PASTE & SEND 🔥");
-    window.open(
-      "https://chat.whatsapp.com/BpEIjHwqLzA0iK0GdFL9fc?mode=gi_c",
-      "_blank"
-    );
-  });
+  let wa = "https://wa.me/6282157298268?text=" + encodeURIComponent(pesan);
+  window.open(wa,"_blank");
 }
 </script>
 </body>
