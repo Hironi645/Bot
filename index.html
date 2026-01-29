@@ -153,9 +153,40 @@ const toast = msg => {
   setTimeout(()=>t.classList.remove("show"),2500);
 };
 
+// cek kata masuk akal (bukan acak)
+function validText(teks){
+  teks = teks.trim().toLowerCase();
+
+  // minimal 6 huruf & ada vokal
+  const adaVokal = /[aiueo]/.test(teks);
+  const cukupPanjang = teks.length >= 6;
+
+  // atau minimal 2 kata
+  const duaKata = teks.split(" ").length >= 2;
+
+  return (adaVokal && cukupPanjang) || duaKata;
+}
+
 function kirim(){
   if(!nama.value||!umur.value||!usn.value||!kota.value||!alasan.value){
     toast("⚠️ Semua data wajib diisi");
+    return;
+  }
+
+  const umurVal = parseInt(umur.value);
+
+  if(umurVal < 10 || umurVal > 100){
+    toast("⚠️ Umur harus antara 10 – 100 tahun");
+    return;
+  }
+
+  if(!validText(nama.value)){
+    toast("⚠️ Nama tidak valid, tulis dengan benar");
+    return;
+  }
+
+  if(!validText(alasan.value)){
+    toast("⚠️ Alasan terlalu asal / tidak jelas");
     return;
   }
 
@@ -166,7 +197,7 @@ function kirim(){
 ━━━━━━━━━━━━━━━
 ⌁ Kode Daftar : ${kode}
 ⌁ Nama : ${nama.value}
-⌁ Umur : ${umur.value}
+⌁ Umur : ${umurVal}
 ⌁ USN Hotel Hideaway : ${usn.value}
 ⌁ Asal Kota : ${kota.value}
 ⌁ Alasan Bergabung :
