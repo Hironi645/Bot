@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>DEVIL REIGN — FORM MEMBER</title>
+<style>
+body {
+  background:#0b0b0b;
+  color:#fff;
+  font-family:Arial, sans-serif;
+}
+.container {
+  max-width:500px;
+  margin:40px auto;
+  background:#111;
+  padding:20px;
+  border-radius:10px;
+}
+h2 {
+  text-align:center;
+  color:#ff0000;
+}
+label {
+  display:block;
+  margin-top:12px;
+}
+input, textarea {
+  width:100%;
+  padding:8px;
+  margin-top:5px;
+  background:#1a1a1a;
+  border:1px solid #333;
+  color:#fff;
+}
+button {
+  width:100%;
+  margin-top:20px;
+  padding:12px;
+  background:#ff0000;
+  border:none;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+}
+button:hover {
+  background:#cc0000;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <h2>DEVIL REIGN — FORM MEMBER</h2>
+
+  <label>Nama</label>
+  <input id="nama">
+
+  <label>Umur</label>
+  <input id="umur">
+
+  <label>USN Hotel Hideaway</label>
+  <input id="usn">
+
+  <label>Asal Kota</label>
+  <input id="kota">
+
+  <label>Alasan Bergabung</label>
+  <textarea id="alasan"></textarea>
+
+  <button onclick="kirim()">DAFTAR & JOIN GRUP</button>
+</div>
+
+<script>
+function kirim() {
+  let pesan =
+`DEVIL REIGN — FORM MEMBER
+━━━━━━━━━━━━━━━
+⌁ nama : ${nama.value}
+⌁ umur : ${umur.value}
+⌁ usn hotel hideaway : ${usn.value}
+⌁ asal kota : ${kota.value}
+⌁ alasan bergabung dengan "Devil Reign" :
+${alasan.value}
+━━━━━━━━━━━━━━━
+PERATURAN DEVIL REIGN
+✦ 1. saling menghormati dan menjaga sikap
+✦ 2. dilarang membuat keributan atau memancing konflik
+✦ 3. gunakan bahasa yang sopan dan nyaman
+✦ 4. hindari spam chat, vn, stiker, atau gif
+✦ 5. dilarang menyebarkan hoaks atau link mencurigakan
+✦ 6. konten harus aman dan pantas (no 18+)
+✦ 7. utamakan kerja sama dan solidaritas
+✦ 8. patuhi arahan admin dan owner
+━━━━━━━━━━━━━━━
+
+۝ Satu Reign, Satu Kekuasaan ۝`;
+
+  navigator.clipboard.writeText(pesan).then(() => {
+    alert("Pesan berhasil disalin!\nSetelah masuk grup, tinggal PASTE & SEND 🔥");
+    window.open(
+      "https://chat.whatsapp.com/BpEIjHwqLzA0iK0GdFL9fc?mode=gi_c",
+      "_blank"
+    );
+  });
+}
+</script>
+</body>
+</html>
