@@ -2,130 +2,45 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>DEVIL REIGN — ELITE FORM</title>
-
+<title>DEVIL REIGN — OVERLORD</title>
 <style>
-body{
-  background:radial-gradient(circle at top,#200000,#000);
-  font-family:Arial, sans-serif;
-  color:#fff;
-}
-.elite-box{
-  max-width:520px;
-  margin:50px auto;
-  background:#0e0e0e;
-  padding:25px;
-  border-radius:12px;
-  box-shadow:0 0 30px rgba(255,0,0,0.5);
-}
-h1{
-  text-align:center;
-  color:#ff1a1a;
-  letter-spacing:2px;
-}
-p{
-  text-align:center;
-  color:#aaa;
-  font-size:14px;
-}
-label{
-  display:block;
-  margin-top:14px;
-}
-input, textarea{
-  width:100%;
-  padding:9px;
-  margin-top:6px;
-  background:#1a1a1a;
-  border:1px solid #400;
-  color:#fff;
-  border-radius:6px;
-}
-button{
-  width:100%;
-  margin-top:22px;
-  padding:14px;
-  background:linear-gradient(45deg,#ff0000,#800000);
-  border:none;
-  color:#fff;
-  font-size:17px;
-  font-weight:bold;
-  border-radius:8px;
-  cursor:pointer;
-}
-button:hover{
-  opacity:0.9;
-}
-.footer{
-  text-align:center;
-  margin-top:15px;
-  font-size:12px;
-  color:#666;
-}
+body{background:#050000;color:#fff;font-family:Arial}
+.box{max-width:520px;margin:40px auto;background:#0d0000;padding:25px;border-radius:12px;box-shadow:0 0 40px red}
+h1{text-align:center;color:#ff1a1a}
+input,textarea{width:100%;margin-top:8px;padding:8px;background:#1a0000;border:1px solid #500;color:#fff}
+button{width:100%;margin-top:20px;padding:14px;background:#ff0000;border:none;color:#fff;font-weight:bold}
 </style>
 </head>
-
 <body>
-<div class="elite-box">
+
+<div class="box">
 <h1>DEVIL REIGN</h1>
-<p>Elite Member Registration</p>
+<p align="center">OVERLORD RECRUITMENT</p>
 
-<label>Nama</label>
-<input id="nama" placeholder="Nama kamu">
+<input id="nama" placeholder="Nama">
+<input id="umur" placeholder="Umur">
+<input id="usn" placeholder="USN Hotel Hideaway">
+<input id="kota" placeholder="Asal Kota">
+<textarea id="alasan" placeholder="Alasan bergabung"></textarea>
 
-<label>Umur</label>
-<input id="umur" type="number" placeholder="Contoh: 19">
-
-<label>USN Hotel Hideaway</label>
-<input id="usn" placeholder="@username">
-
-<label>Asal Kota</label>
-<input id="kota" placeholder="Kota asal">
-
-<label>Alasan Bergabung</label>
-<textarea id="alasan" placeholder="Tulis alasan dengan serius..."></textarea>
-
-<button onclick="kirim()">DAFTAR ELITE DEVIL REIGN</button>
-
-<div class="footer">
-۝ Satu Reign, Satu Kekuasaan ۝
-</div>
+<button onclick="daftar()">DAFTAR ELITE</button>
 </div>
 
 <script>
-function kirim(){
-  if(!nama.value || !umur.value || !usn.value || !kota.value || !alasan.value){
-    alert("⚠️ Semua data wajib diisi.");
-    return;
-  }
+function daftar(){
+ if(!nama.value||!umur.value||!usn.value||!kota.value||!alasan.value){
+  alert("Lengkapi semua data");
+  return;
+ }
 
-  let kode = "DR-" + Math.floor(1000 + Math.random()*9000);
+ let kode="DR-"+Date.now().toString().slice(-5);
+ let data={kode,nama:nama.value,umur:umur.value,usn:usn.value,kota:kota.value,alasan:alasan.value,status:"MENUNGGU"};
 
-  let pesan =
-`DEVIL REIGN — FORM MEMBER [ELITE]
-━━━━━━━━━━━━━━━
-⌁ Kode Daftar : ${kode}
-⌁ Nama : ${nama.value}
-⌁ Umur : ${umur.value}
-⌁ USN Hotel Hideaway : ${usn.value}
-⌁ Asal Kota : ${kota.value}
-⌁ Alasan Bergabung :
-${alasan.value}
-━━━━━━━━━━━━━━━
-PERATURAN DEVIL REIGN
-✦ 1. saling menghormati dan menjaga sikap
-✦ 2. dilarang membuat keributan atau konflik
-✦ 3. gunakan bahasa yang sopan
-✦ 4. no spam / hoaks / link mencurigakan
-✦ 5. konten aman & pantas (NO 18+)
-✦ 6. patuhi admin & owner
-━━━━━━━━━━━━━━━
-STATUS : MENUNGGU PERSETUJUAN ADMIN
-━━━━━━━━━━━━━━━
-۝ Satu Reign, Satu Kekuasaan ۝`;
+ let list=JSON.parse(localStorage.getItem("devilreign")||"[]");
+ list.push(data);
+ localStorage.setItem("devilreign",JSON.stringify(list));
 
-  let wa = "https://wa.me/6282157298268?text=" + encodeURIComponent(pesan);
-  window.open(wa,"_blank");
+ alert("Pendaftaran berhasil!\nKode: "+kode);
 }
 </script>
 </body>
