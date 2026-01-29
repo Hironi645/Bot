@@ -2,235 +2,190 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DEVIL REIGN — FROM INTRO</title>
-
+<title>DEVIL REIGN | ELITE FORM</title>
 <style>
-:root{
-  --red:#ff1a1a;
-  --dark:#0b0b0b;
-  --card:#141414;
-  --border:#2a2a2a;
-}
-*{box-sizing:border-box}
+*{box-sizing:border-box;font-family:system-ui}
 body{
-  margin:0;
-  min-height:100vh;
-  background:radial-gradient(circle at top,#200000,#000);
-  font-family:system-ui,-apple-system,Segoe UI,Roboto;
+  background:radial-gradient(circle,#140000,#000);
   color:#fff;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  margin:0
 }
 .card{
+  background:#0c0c0c;
+  border:1px solid #400;
+  padding:25px;
   width:100%;
-  max-width:480px;
-  background:var(--card);
-  padding:24px;
+  max-width:420px;
   border-radius:14px;
-  box-shadow:0 0 35px rgba(255,0,0,.35);
+  box-shadow:0 0 40px #400
 }
-h1{
-  text-align:center;
-  margin:0;
-  color:var(--red);
-  letter-spacing:2px;
-}
-.subtitle{
-  text-align:center;
-  color:#aaa;
-  font-size:13px;
-  margin-bottom:18px;
-}
-.field{
-  margin-bottom:14px;
-}
-.field label{
-  font-size:13px;
-  color:#ccc;
-}
-.field input,
-.field textarea{
-  width:100%;
-  margin-top:6px;
-  padding:10px;
-  background:#0f0f0f;
-  border:1px solid var(--border);
-  border-radius:8px;
-  color:#fff;
-  outline:none;
-}
-.field input:focus,
-.field textarea:focus{
-  border-color:var(--red);
-}
-button{
-  width:100%;
-  margin-top:20px;
-  padding:14px;
-  background:linear-gradient(135deg,#ff0000,#8b0000);
-  border:none;
-  border-radius:10px;
-  color:#fff;
-  font-size:16px;
-  font-weight:700;
-  cursor:pointer;
-}
-button:active{transform:scale(.98)}
-.footer{
-  margin-top:16px;
-  text-align:center;
-  font-size:12px;
-  color:#777;
-}
+h2{text-align:center;color:#ff2a2a;margin-bottom:20px}
 
-/* toast */
+input,select,textarea,button{
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  background:#111;
+  border:1px solid #400;
+  color:#fff;
+  border-radius:8px;
+  outline:none
+}
+textarea{resize:none;height:90px}
+
+button{
+  background:linear-gradient(45deg,#600,#f00);
+  font-weight:bold;
+  cursor:pointer
+}
+button:hover{opacity:.85}
+
+/* TOAST / MODAL */
 #toast{
   position:fixed;
-  top:20px;
+  bottom:20px;
   left:50%;
   transform:translateX(-50%);
-  background:#111;
-  padding:12px 18px;
+  background:#120000;
+  border:1px solid #f00;
+  padding:16px;
   border-radius:10px;
-  border-left:4px solid var(--red);
-  box-shadow:0 0 15px rgba(255,0,0,.4);
+  width:90%;
+  max-width:380px;
+  box-shadow:0 0 25px #f00;
   opacity:0;
   pointer-events:none;
-  transition:.35s ease;
+  transition:.35s;
+  z-index:999
 }
 #toast.show{
   opacity:1;
-  top:35px;
+  pointer-events:auto
 }
+.toast-btn{
+  display:flex;
+  gap:10px;
+  margin-top:12px
+}
+.toast-btn button{
+  flex:1;
+  padding:10px;
+  border-radius:8px;
+  border:none;
+  font-weight:bold
+}
+.batal{background:#333}
+.setuju{background:#b00000}
 </style>
 </head>
-
 <body>
 
 <div class="card">
-  <h1>DEVIL REIGN</h1>
-  <div class="subtitle">MEMBER FORM</div>
+<h2>🩸 DEVIL REIGN ELITE</h2>
 
-  <div class="field">
-    <label>Nama</label>
-    <input id="nama" placeholder="Nama lengkap">
-  </div>
+<input id="nama" placeholder="Nama lengkap">
+<input id="umur" type="number" placeholder="Umur">
+<input id="usn" placeholder="USN Hotel Hideaway">
 
-  <div class="field">
-    <label>Umur</label>
-    <input id="umur" type="number" placeholder="Contoh: 19">
-  </div>
+<select id="kota">
+<option value="">Pilih Asal Kota</option>
+<option>Jakarta</option>
+<option>Bandung</option>
+<option>Surabaya</option>
+<option>Yogyakarta</option>
+<option>Semarang</option>
+<option>Medan</option>
+<option>Pontianak</option>
+<option>Makassar</option>
+<option>Denpasar</option>
+<option>Jayapura</option>
+</select>
 
-  <div class="field">
-    <label>USN Hotel Hideaway</label>
-    <input id="usn" placeholder="@username">
-  </div>
+<textarea id="alasan" placeholder="Alasan bergabung (minimal 15 kata)"></textarea>
 
-  <div class="field">
-    <label>Asal Kota</label>
-    <input id="kota" placeholder="Kota asal">
-  </div>
-
-  <div class="field">
-    <label>Alasan Bergabung</label>
-    <textarea id="alasan" rows="3" placeholder="Tulis alasan dengan jujur..."></textarea>
-  </div>
-
-  <button onclick="kirim()">DAFTAR DEVIL REIGN</button>
-
-  <div class="footer">۝ Satu Reign, Satu Kekuasaan ۝ | Website by Hironi</div>
+<button onclick="cekForm()">🔥 DAFTAR SEKARANG</button>
 </div>
 
-<div id="toast"></div>
+<!-- TOAST -->
+<div id="toast">
+<div style="font-weight:bold;color:#ff4a4a">PERATURAN DEVIL REIGN</div>
+<div style="font-size:13px;line-height:1.5;margin-top:6px">
+✦ 1. saling menghormati dan menjaga sikap<br>
+✦ 2. dilarang membuat keributan atau konflik<br>
+✦ 3. gunakan bahasa yang sopan<br>
+✦ 4. no spam / hoaks / link mencurigakan<br>
+✦ 5. konten aman & pantas (NO 18+)<br>
+✦ 6. patuhi admin & owner
+</div>
+
+<div class="toast-btn">
+<button class="batal" onclick="tutupToast()">❌ BATAL</button>
+<button class="setuju" onclick="kirim()">✅ SAYA SETUJU</button>
+</div>
+</div>
 
 <script>
-const toast = msg => {
-  const t = document.getElementById("toast");
-  t.innerText = msg;
-  t.classList.add("show");
-  setTimeout(()=>t.classList.remove("show"),2500);
-};
+const toast=document.getElementById("toast");
 
-// DETEKSI KATA ACAK / GIBBERISH
+function tutupToast(){
+  toast.classList.remove("show");
+}
+
 function isHumanText(text){
-  text = text.trim().toLowerCase();
-
-  // minimal 2 kata
-  if(text.split(" ").length < 2) return false;
-
-  // hanya huruf & spasi
-  if(!/^[a-z\s]+$/.test(text)) return false;
-
-  // cek keseimbangan vokal & konsonan
-  const vokal = text.match(/[aiueo]/g)?.length || 0;
-  const konsonan = text.match(/[bcdfghjklmnpqrstvwxyz]/g)?.length || 0;
-  if(vokal < 2 || konsonan < 3) return false;
-
-  // cegah pola berulang (jsjsjs, ananan)
-  if(/(.{2,})\1{1,}/.test(text)) return false;
-
-  // cegah konsonan beruntun panjang
-  if(/[bcdfghjklmnpqrstvwxyz]{4,}/.test(text)) return false;
-
+  if(text.split(" ").length<15) return false;
+  if(!/^[a-zA-Z\s]+$/.test(text)) return false;
+  if(/[bcdfghjklmnpqrstvwxyz]{4,}/i.test(text)) return false;
   return true;
 }
 
-function kirim(){
+function cekForm(){
   if(!nama.value||!umur.value||!usn.value||!kota.value||!alasan.value){
-    toast("⚠️ Semua data wajib diisi");
+    alert("SEMUA DATA WAJIB DIISI");
     return;
   }
 
-  const umurVal = parseInt(umur.value);
-  if(umurVal < 10 || umurVal > 100){
-    toast("⚠️ Umur harus antara 10 – 100 tahun");
-    return;
-  }
-
-  if(!isHumanText(nama.value)){
-    toast("⚠️ Nama tidak valid, tulis nama asli");
+  const u=parseInt(umur.value);
+  if(u<10||u>100){
+    alert("UMUR TIDAK VALID");
     return;
   }
 
   if(!isHumanText(alasan.value)){
-    toast("⚠️ Alasan tidak jelas / terdeteksi asal");
+    alert("ALASAN TERDETEKSI ACAK / TIDAK SERIUS");
     return;
   }
 
-  const kode = "DR-" + Math.floor(1000 + Math.random() * 9000);
+  toast.classList.add("show");
+}
 
-  const pesan =
+function kirim(){
+  const kode="DR-"+Math.floor(10000+Math.random()*90000);
+  const pesan=
 `DEVIL REIGN — FORM MEMBER
 ━━━━━━━━━━━━━━━
-⌁ Kode Daftar : ${kode}
-⌁ Nama : ${nama.value}
-⌁ Umur : ${umurVal}
-⌁ USN Hotel Hideaway : ${usn.value}
-⌁ Asal Kota : ${kota.value}
-⌁ Alasan Bergabung :
+Kode : ${kode}
+Nama : ${nama.value}
+Umur : ${umur.value}
+USN : ${usn.value}
+Asal Kota : ${kota.value}
+
+ALASAN :
 ${alasan.value}
+
+STATUS : MENUNGGU PERSETUJUAN
 ━━━━━━━━━━━━━━━
-PERATURAN DEVIL REIGN
-✦ 1. saling menghormati dan menjaga sikap
-✦ 2. dilarang membuat keributan atau konflik
-✦ 3. gunakan bahasa yang sopan
-✦ 4. no spam / hoaks / link mencurigakan
-✦ 5. konten aman & pantas (NO 18+)
-✦ 6. patuhi admin & owner
-━━━━━━━━━━━━━━━
-STATUS : MENUNGGU PERSETUJUAN ADMIN
-━━━━━━━━━━━━━━━
-۝ Satu Reign, Satu Kekuasaan ۝`;
+۝ ONE REIGN, ONE POWER ۝`;
 
   window.open(
-    "https://wa.me/6282157298268?text=" + encodeURIComponent(pesan),
+    "https://wa.me/6282157298268?text="+encodeURIComponent(pesan),
     "_blank"
   );
 }
 </script>
-
 
 </body>
 </html>
