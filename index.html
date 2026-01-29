@@ -2,164 +2,241 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>DEVIL REIGN | ELITE FORM</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DEVIL REIGN — GOD MODE</title>
+
 <style>
-*{box-sizing:border-box;font-family:system-ui}
+:root{
+  --red:#ff2a2a;
+  --dark:#090909;
+  --card:#111;
+  --border:#2a2a2a;
+  --soft:#bdbdbd;
+}
+*{box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI}
 body{
-  background:radial-gradient(circle,#140000,#000);
-  color:#fff;
+  margin:0;
+  min-height:100vh;
+  background:radial-gradient(circle at top,#1b0000,#000);
   display:flex;
   justify-content:center;
   align-items:center;
-  min-height:100vh;
-  margin:0
+  color:#fff;
 }
 .card{
-  background:#0c0c0c;
-  border:1px solid #400;
-  padding:25px;
   width:100%;
-  max-width:420px;
-  border-radius:14px;
-  box-shadow:0 0 40px #400
+  max-width:460px;
+  background:linear-gradient(180deg,#111,#0b0b0b);
+  border:1px solid #3a0000;
+  border-radius:16px;
+  padding:26px;
+  box-shadow:0 0 50px rgba(255,0,0,.25);
 }
-h2{text-align:center;color:#ff2a2a;margin-bottom:20px}
-
-input,select,textarea,button{
+h1{
+  margin:0;
+  text-align:center;
+  color:var(--red);
+  letter-spacing:2px;
+}
+.sub{
+  text-align:center;
+  font-size:13px;
+  color:var(--soft);
+  margin-bottom:20px;
+}
+.field{margin-bottom:14px}
+label{
+  font-size:13px;
+  color:#cfcfcf;
+}
+input,select,textarea{
   width:100%;
-  padding:12px;
-  margin:8px 0;
-  background:#111;
-  border:1px solid #400;
+  margin-top:6px;
+  padding:11px 12px;
+  background:#0e0e0e;
+  border:1px solid var(--border);
+  border-radius:10px;
   color:#fff;
-  border-radius:8px;
-  outline:none
+  outline:none;
 }
-textarea{resize:none;height:90px}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--red);
+  box-shadow:0 0 0 1px rgba(255,42,42,.4);
+}
+textarea{resize:none;height:80px}
 
 button{
-  background:linear-gradient(45deg,#600,#f00);
-  font-weight:bold;
-  cursor:pointer
+  width:100%;
+  margin-top:20px;
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  background:linear-gradient(135deg,#ff0000,#7a0000);
+  color:#fff;
+  font-weight:800;
+  font-size:16px;
+  letter-spacing:1px;
+  cursor:pointer;
 }
-button:hover{opacity:.85}
+button:active{transform:scale(.97)}
 
-/* TOAST / MODAL */
-#toast{
+.footer{
+  text-align:center;
+  margin-top:18px;
+  font-size:12px;
+  color:#777;
+}
+
+/* MODAL RULE */
+#modal{
   position:fixed;
-  bottom:20px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#120000;
-  border:1px solid #f00;
-  padding:16px;
-  border-radius:10px;
-  width:90%;
-  max-width:380px;
-  box-shadow:0 0 25px #f00;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  display:flex;
+  align-items:center;
+  justify-content:center;
   opacity:0;
   pointer-events:none;
-  transition:.35s;
-  z-index:999
+  transition:.3s;
+  z-index:999;
 }
-#toast.show{
+#modal.show{
   opacity:1;
-  pointer-events:auto
+  pointer-events:auto;
 }
-.toast-btn{
+.modal-box{
+  background:#0f0f0f;
+  border:1px solid #400;
+  border-radius:14px;
+  width:90%;
+  max-width:420px;
+  padding:20px;
+  box-shadow:0 0 40px #400;
+}
+.modal-box h3{
+  margin-top:0;
+  color:var(--red);
+}
+.rules{
+  font-size:13px;
+  line-height:1.6;
+  color:#ddd;
+}
+.modal-btn{
   display:flex;
   gap:10px;
-  margin-top:12px
+  margin-top:16px;
 }
-.toast-btn button{
+.modal-btn button{
   flex:1;
   padding:10px;
-  border-radius:8px;
-  border:none;
-  font-weight:bold
+  border-radius:10px;
+  font-weight:700;
 }
-.batal{background:#333}
-.setuju{background:#b00000}
+.cancel{background:#333}
+.ok{background:#b00000}
 </style>
 </head>
+
 <body>
 
 <div class="card">
-<h2>🩸 DEVIL REIGN ELITE</h2>
+  <h1>DEVIL REIGN</h1>
+  <div class="sub">GOD MODE MEMBER FORM</div>
 
-<input id="nama" placeholder="Nama lengkap">
-<input id="umur" type="number" placeholder="Umur">
-<input id="usn" placeholder="USN Hotel Hideaway">
+  <div class="field">
+    <label>Nama</label>
+    <input id="nama" placeholder="Nama lengkap">
+  </div>
 
-<select id="kota">
-<option value="">Pilih Asal Kota</option>
-<option>Jakarta</option>
-<option>Bandung</option>
-<option>Surabaya</option>
-<option>Yogyakarta</option>
-<option>Semarang</option>
-<option>Medan</option>
-<option>Pontianak</option>
-<option>Makassar</option>
-<option>Denpasar</option>
-<option>Jayapura</option>
-</select>
+  <div class="field">
+    <label>Umur</label>
+    <input id="umur" type="number" placeholder="Contoh: 21">
+  </div>
 
-<textarea id="alasan" placeholder="Alasan bergabung (minimal 15 kata)"></textarea>
+  <div class="field">
+    <label>USN Hotel Hideaway</label>
+    <input id="usn" placeholder="@username">
+  </div>
 
-<button onclick="cekForm()">🔥 DAFTAR SEKARANG</button>
+  <div class="field">
+    <label>Asal Kota</label>
+    <select id="kota">
+      <option value="">Pilih kota</option>
+      <option>Jakarta</option>
+      <option>Bandung</option>
+      <option>Surabaya</option>
+      <option>Yogyakarta</option>
+      <option>Semarang</option>
+      <option>Medan</option>
+      <option>Pontianak</option>
+      <option>Makassar</option>
+      <option>Denpasar</option>
+      <option>Jayapura</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label>Alasan Bergabung</label>
+    <textarea id="alasan" placeholder="Contoh: Join / Gabut / Ingin komunitas"></textarea>
+  </div>
+
+  <button onclick="cekForm()">DAFTAR SEKARANG</button>
+  <div class="footer">۝ Satu Reign, Satu Kekuasaan ۝</div>
 </div>
 
-<!-- TOAST -->
-<div id="toast">
-<div style="font-weight:bold;color:#ff4a4a">PERATURAN DEVIL REIGN</div>
-<div style="font-size:13px;line-height:1.5;margin-top:6px">
-✦ 1. saling menghormati dan menjaga sikap<br>
-✦ 2. dilarang membuat keributan atau konflik<br>
-✦ 3. gunakan bahasa yang sopan<br>
-✦ 4. no spam / hoaks / link mencurigakan<br>
-✦ 5. konten aman & pantas (NO 18+)<br>
-✦ 6. patuhi admin & owner
-</div>
+<!-- MODAL -->
+<div id="modal">
+  <div class="modal-box">
+    <h3>PERATURAN DEVIL REIGN</h3>
+    <div class="rules">
+      ✦ 1. saling menghormati dan menjaga sikap<br>
+      ✦ 2. dilarang membuat keributan atau konflik<br>
+      ✦ 3. gunakan bahasa yang sopan<br>
+      ✦ 4. no spam / hoaks / link mencurigakan<br>
+      ✦ 5. konten aman & pantas (NO 18+)<br>
+      ✦ 6. patuhi admin & owner
+    </div>
 
-<div class="toast-btn">
-<button class="batal" onclick="tutupToast()">❌ BATAL</button>
-<button class="setuju" onclick="kirim()">✅ SAYA SETUJU</button>
-</div>
+    <div class="modal-btn">
+      <button class="cancel" onclick="tutup()">BATAL</button>
+      <button class="ok" onclick="kirim()">SAYA SETUJU</button>
+    </div>
+  </div>
 </div>
 
 <script>
-const toast=document.getElementById("toast");
+const modal=document.getElementById("modal");
 
-function tutupToast(){
-  toast.classList.remove("show");
-}
+function tutup(){ modal.classList.remove("show"); }
 
-function isHumanText(text){
-  if(text.split(" ").length<15) return false;
-  if(!/^[a-zA-Z\s]+$/.test(text)) return false;
-  if(/[bcdfghjklmnpqrstvwxyz]{4,}/i.test(text)) return false;
+/* DETEKSI TEKS MANUSIA (VERSI DEWA) */
+function validAlasan(t){
+  t=t.trim();
+  if(t.length<4) return false;              // terlalu pendek
+  if(/(.)\1{4,}/i.test(t)) return false;    // huruf sama berulang
+  if(!/[aeiou]/i.test(t)) return false;     // tanpa vokal
   return true;
 }
 
 function cekForm(){
   if(!nama.value||!umur.value||!usn.value||!kota.value||!alasan.value){
-    alert("SEMUA DATA WAJIB DIISI");
+    alert("Lengkapi semua data");
     return;
   }
 
   const u=parseInt(umur.value);
   if(u<10||u>100){
-    alert("UMUR TIDAK VALID");
+    alert("Umur tidak masuk akal");
     return;
   }
 
-  if(!isHumanText(alasan.value)){
-    alert("ALASAN TERDETEKSI ACAK / TIDAK SERIUS");
+  if(!validAlasan(alasan.value)){
+    alert("Alasan terdeteksi acak / tidak wajar");
     return;
   }
 
-  toast.classList.add("show");
+  modal.classList.add("show");
 }
 
 function kirim(){
@@ -167,18 +244,17 @@ function kirim(){
   const pesan=
 `DEVIL REIGN — FORM MEMBER
 ━━━━━━━━━━━━━━━
-Kode : ${kode}
-Nama : ${nama.value}
-Umur : ${umur.value}
-USN : ${usn.value}
-Asal Kota : ${kota.value}
-
-ALASAN :
+⌁ Kode Daftar : ${kode}
+⌁ Nama : ${nama.value}
+⌁ Umur : ${umur.value}
+⌁ USN Hotel Hideaway : ${usn.value}
+⌁ Asal Kota : ${kota.value}
+⌁ Alasan Bergabung :
 ${alasan.value}
-
-STATUS : MENUNGGU PERSETUJUAN
 ━━━━━━━━━━━━━━━
-۝ ONE REIGN, ONE POWER ۝`;
+STATUS : MENUNGGU PERSETUJUAN ADMIN
+━━━━━━━━━━━━━━━
+۝ Satu Reign, Satu Kekuasaan ۝`;
 
   window.open(
     "https://wa.me/6282157298268?text="+encodeURIComponent(pesan),
