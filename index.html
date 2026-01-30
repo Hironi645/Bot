@@ -406,6 +406,13 @@ button:active{
     <label>Alasan Bergabung</label>
     <textarea id="alasan" placeholder="Contoh: Join / Gabut / Ingin komunitas"></textarea>
   </div>
+  
+<label>Pilih Admin WhatsApp</label>
+<select id="adminWA">
+  <option value="">-- Pilih Admin --</option>
+  <option value="6289504498328">Admin 1 (0895-0449-8328)</option>
+  <option value="6285824168807">Admin 2 (0858-2416-8807)</option>
+</select>
 
   <button onclick="cekForm()">DAFTAR SEKARANG</button>
   <div class="footer">۝ Satu Reign, Satu Kekuasaan ۝ | Website By Hironi</div>
@@ -451,6 +458,11 @@ function cekForm(){
     return;
   }
 
+  if(!adminWA.value){
+    alert("Pilih admin WhatsApp tujuan");
+    return;
+  }
+
   const u=parseInt(umur.value);
   if(u<10||u>100){
     alert("Umur tidak masuk akal");
@@ -464,10 +476,11 @@ function cekForm(){
 
   modal.classList.add("show");
 }
-
 function kirim(){
-  const kode="DR-"+Math.floor(10000+Math.random()*90000);
-  const pesan=
+  const admin = adminWA.value; // nomor admin terpilih
+  const kode = "DR-" + Math.floor(10000 + Math.random() * 90000);
+
+  const pesan =
 `DEVIL REIGN — FORM MEMBER
 ━━━━━━━━━━━━━━━
 ⌁ Kode Daftar : ${kode}
@@ -483,10 +496,11 @@ STATUS : MENUNGGU PERSETUJUAN ADMIN
 ۝ Satu Reign, Satu Kekuasaan ۝`;
 
   window.open(
-    "https://wa.me/6285824168807?text="+encodeURIComponent(pesan),
+    `https://wa.me/${admin}?text=${encodeURIComponent(pesan)}`,
     "_blank"
   );
 }
+
 </script>
 
 </body>
