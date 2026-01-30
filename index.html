@@ -191,182 +191,214 @@ textarea{
 <body>
 
 ‎<div class="card">
-‎  <div class="card-header">
-‎    <h1> ۝ DEVIL REIGN ۝ </h1>
-‎    <p>OFFICIAL MEMBER REGISTRATION</p>
-‎  </div>
+  <div class="card-header">
+    <h1>DEVIL REIGN</h1>
+    <p>OFFICIAL MEMBER REGISTRATION</p>
+  </div>
+
+  <div class="card-body">
+
+    <div class="field">
+      <label>Nama Lengkap</label>
+      <input id="nama" placeholder="Masukkan nama lengkap">
+    </div>
+
+    <div class="field">
+      <label>Umur</label>
+      <input id="umur" type="number" placeholder="Contoh: 17">
+    </div>
+
+    <div class="field">
+      <label>USN Hotel Hideaway</label>
+      <input id="usn" placeholder="Username HH kamu">
+    </div>
+
+    <div class="field">
+      <label>Asal Kota / Kabupaten</label>
+      <select id="kota">
+        <option value="">Pilih Kota / Kabupaten</option>
+        <!-- (isi kota tetap sama seperti punyamu, tidak diubah) -->
+        <option value="">Pilih Kota / Kabupaten</option>
+‎   <optgroup label="DKI Jakarta">
+‎    <option>Jakarta Pusat</option>
+‎    <option>Jakarta Utara</option>
+‎    <option>Jakarta Barat</option>
+‎    <option>Jakarta Selatan</option>
+‎    <option>Jakarta Timur</option>
+‎  </optgroup>
 ‎
-‎  <div class="card-body">
+‎  <optgroup label="Jawa Barat">
+‎    <option>Bandung</option>
+‎    <option>Bekasi</option>
+‎    <option>Bogor</option>
+‎    <option>Depok</option>
+‎    <option>Cimahi</option>
+‎    <option>Tasikmalaya</option>
+‎    <option>Cirebon</option>
+‎    <option>Sukabumi</option>
+‎    <option>Garut</option>
+‎    <option>Karawang</option>
+‎    <option>Purwakarta</option>
+‎  </optgroup>
 ‎
-‎    <div class="field">
-‎      <label>Nama Lengkap</label>
-‎      <input id="nama" placeholder="Masukkan nama lengkap">
-‎    </div>
+‎  <optgroup label="Jawa Tengah">
+‎    <option>Semarang</option>
+‎    <option>Solo</option>
+‎    <option>Magelang</option>
+‎    <option>Pekalongan</option>
+‎    <option>Tegal</option>
+‎    <option>Purwokerto</option>
+‎    <option>Salatiga</option>
+‎    <option>Kudus</option>
+‎  </optgroup>
 ‎
-‎    <div class="field">
-‎      <label>Umur</label>
-‎      <input id="umur" type="number" placeholder="Contoh: 17">
-‎    </div>
+‎  <optgroup label="DI Yogyakarta">
+‎    <option>Yogyakarta</option>
+‎    <option>Sleman</option>
+‎    <option>Bantul</option>
+‎    <option>Kulon Progo</option>
+‎    <option>Gunungkidul</option>
+‎  </optgroup>
 ‎
-‎    <div class="field">
-‎      <label>USN Hotel Hideaway</label>
-‎      <input id="usn" placeholder="Username HH kamu">
-‎    </div>
+‎  <optgroup label="Jawa Timur">
+‎    <option>Surabaya</option>
+‎    <option>Malang</option>
+‎    <option>Kediri</option>
+‎    <option>Blitar</option>
+‎    <option>Madiun</option>
+‎    <option>Pasuruan</option>
+‎    <option>Probolinggo</option>
+‎    <option>Jember</option>
+‎    <option>Banyuwangi</option>
+‎    <option>Gresik</option>
+‎    <option>Sidoarjo</option>
+‎  </optgroup>
 ‎
-‎    <div class="field">
-‎      <label>Asal Kota / Kabupaten</label>
-‎      <select id="kota">
-‎        <option value="">Pilih Kota / Kabupaten</option>
-‎   <optgroup label="DKI Jakarta">
-‎    <option>Jakarta Pusat</option>
-‎    <option>Jakarta Utara</option>
-‎    <option>Jakarta Barat</option>
-‎    <option>Jakarta Selatan</option>
-‎    <option>Jakarta Timur</option>
-‎  </optgroup>
+‎  <optgroup label="Banten">
+‎    <option>Tangerang</option>
+‎    <option>Tangerang Selatan</option>
+‎    <option>Serang</option>
+‎    <option>Cilegon</option>
+‎    <option>Lebak</option>
+‎    <option>Pandeglang</option>
+‎  </optgroup>
 ‎
-‎  <optgroup label="Jawa Barat">
-‎    <option>Bandung</option>
-‎    <option>Bekasi</option>
-‎    <option>Bogor</option>
-‎    <option>Depok</option>
-‎    <option>Cimahi</option>
-‎    <option>Tasikmalaya</option>
-‎    <option>Cirebon</option>
-‎    <option>Sukabumi</option>
-‎    <option>Garut</option>
-‎    <option>Karawang</option>
-‎    <option>Purwakarta</option>
-‎  </optgroup>
+‎  <optgroup label="Sumatera">
+‎    <option>Medan</option>
+‎    <option>Binjai</option>
+‎    <option>Padang</option>
+‎    <option>Bukittinggi</option>
+‎    <option>Pekanbaru</option>
+‎    <option>Dumai</option>
+‎    <option>Palembang</option>
+‎    <option>Lubuklinggau</option>
+‎    <option>Jambi</option>
+‎    <option>Bengkulu</option>
+‎    <option>Bandar Lampung</option>
+‎    <option>Metro</option>
+‎    <option>Pangkal Pinang</option>
+‎    <option>Tanjung Pinang</option>
+‎    <option>Banda Aceh</option>
+‎    <option>Lhokseumawe</option>
+‎  </optgroup>
 ‎
-‎  <optgroup label="Jawa Tengah">
-‎    <option>Semarang</option>
-‎    <option>Solo</option>
-‎    <option>Magelang</option>
-‎    <option>Pekalongan</option>
-‎    <option>Tegal</option>
-‎    <option>Purwokerto</option>
-‎    <option>Salatiga</option>
-‎    <option>Kudus</option>
-‎  </optgroup>
+‎  <optgroup label="Kalimantan">
+‎    <option>Pontianak</option>
+‎    <option>Singkawang</option>
+‎    <option>Palangka Raya</option>
+‎    <option>Samarinda</option>
+‎    <option>Balikpapan</option>
+‎    <option>Bontang</option>
+‎    <option>Banjarmasin</option>
+‎    <option>Banjarbaru</option>
+‎    <option>Tarakan</option>
+‎  </optgroup>
 ‎
-‎  <optgroup label="DI Yogyakarta">
-‎    <option>Yogyakarta</option>
-‎    <option>Sleman</option>
-‎    <option>Bantul</option>
-‎    <option>Kulon Progo</option>
-‎    <option>Gunungkidul</option>
-‎  </optgroup>
+‎  <optgroup label="Sulawesi">
+‎    <option>Makassar</option>
+‎    <option>Parepare</option>
+‎    <option>Palopo</option>
+‎    <option>Manado</option>
+‎    <option>Bitung</option>
+‎    <option>Tomohon</option>
+‎    <option>Gorontalo</option>
+‎    <option>Palu</option>
+‎    <option>Kendari</option>
+‎    <option>Baubau</option>
+‎    <option>Mamuju</option>
+‎  </optgroup>
 ‎
-‎  <optgroup label="Jawa Timur">
-‎    <option>Surabaya</option>
-‎    <option>Malang</option>
-‎    <option>Kediri</option>
-‎    <option>Blitar</option>
-‎    <option>Madiun</option>
-‎    <option>Pasuruan</option>
-‎    <option>Probolinggo</option>
-‎    <option>Jember</option>
-‎    <option>Banyuwangi</option>
-‎    <option>Gresik</option>
-‎    <option>Sidoarjo</option>
-‎  </optgroup>
+‎  <optgroup label="Bali & Nusa Tenggara">
+‎    <option>Denpasar</option>
+‎    <option>Badung</option>
+‎    <option>Gianyar</option>
+‎    <option>Mataram</option>
+‎    <option>Bima</option>
+‎    <option>Kupang</option>
+‎  </optgroup>
 ‎
-‎  <optgroup label="Banten">
-‎    <option>Tangerang</option>
-‎    <option>Tangerang Selatan</option>
-‎    <option>Serang</option>
-‎    <option>Cilegon</option>
-‎    <option>Lebak</option>
-‎    <option>Pandeglang</option>
-‎  </optgroup>
+‎  <optgroup label="Maluku">
+‎    <option>Ambon</option>
+‎    <option>Tual</option>
+‎    <option>Masohi</option>
+‎  </optgroup>
 ‎
-‎  <optgroup label="Sumatera">
-‎    <option>Medan</option>
-‎    <option>Binjai</option>
-‎    <option>Padang</option>
-‎    <option>Bukittinggi</option>
-‎    <option>Pekanbaru</option>
-‎    <option>Dumai</option>
-‎    <option>Palembang</option>
-‎    <option>Lubuklinggau</option>
-‎    <option>Jambi</option>
-‎    <option>Bengkulu</option>
-‎    <option>Bandar Lampung</option>
-‎    <option>Metro</option>
-‎    <option>Pangkal Pinang</option>
-‎    <option>Tanjung Pinang</option>
-‎    <option>Banda Aceh</option>
-‎    <option>Lhokseumawe</option>
-‎  </optgroup>
-‎
-‎  <optgroup label="Kalimantan">
-‎    <option>Pontianak</option>
-‎    <option>Singkawang</option>
-‎    <option>Palangka Raya</option>
-‎    <option>Samarinda</option>
-‎    <option>Balikpapan</option>
-‎    <option>Bontang</option>
-‎    <option>Banjarmasin</option>
-‎    <option>Banjarbaru</option>
-‎    <option>Tarakan</option>
-‎  </optgroup>
-‎
-‎  <optgroup label="Sulawesi">
-‎    <option>Makassar</option>
-‎    <option>Parepare</option>
-‎    <option>Palopo</option>
-‎    <option>Manado</option>
-‎    <option>Bitung</option>
-‎    <option>Tomohon</option>
-‎    <option>Gorontalo</option>
-‎    <option>Palu</option>
-‎    <option>Kendari</option>
-‎    <option>Baubau</option>
-‎    <option>Mamuju</option>
-‎  </optgroup>
-‎
-‎  <optgroup label="Bali & Nusa Tenggara">
-‎    <option>Denpasar</option>
-‎    <option>Badung</option>
-‎    <option>Gianyar</option>
-‎    <option>Mataram</option>
-‎    <option>Bima</option>
-‎    <option>Kupang</option>
-‎  </optgroup>
-‎
-‎  <optgroup label="Maluku">
-‎    <option>Ambon</option>
-‎    <option>Tual</option>
-‎    <option>Masohi</option>
-‎  </optgroup>
-‎
-‎  <optgroup label="Papua">
-‎ 
-‎      </select>
-‎    </div>
-‎
-‎    <div class="field">
-‎      <label>Alasan Bergabung</label>
-‎      <textarea id="alasan" placeholder="Jelaskan alasan kamu ingin bergabung"></textarea>
-‎    </div>
-‎
-‎    <div class="field">
-‎      <label>Admin WhatsApp Tujuan</label>
-‎      <select id="adminWA">
-‎        <option value="">Pilih Admin</option>
-‎        <option value="6289504498328">Admin 1 — 0895-0449-8328</option>
-‎        <option value="6285824168807">Admin 2 — 0858-2416-8807</option>
-‎        <option value="6281318685216">Admin 3 — 0813-1868-5216</option>
-‎      </select>
-‎    </div>
-‎
-‎    <button class="btn-primary" onclick="cekForm()">DAFTAR SEKARANG</button>
-‎
-‎  </div>
-‎
-‎  <div class="card-footer">
-‎    ۝ Satu Reign, Satu kekuasaan ۝
+‎  <optgroup label="Papua Barat">
+  <option>Manokwari</option>
+  <option>Sorong</option>
+  <option>Kota Sorong</option>
+  <option>Raja Ampat</option>
+  <option>Fakfak</option>
+  <option>Kaimana</option>
+  <option>Teluk Bintuni</option>
+  <option>Teluk Wondama</option>
+</optgroup>
+<optgroup label="Papua">
+  <option>Jayapura</option>
+  <option>Kota Jayapura</option>
+  <option>Sentani</option>
+  <option>Biak</option>
+  <option>Biak Numfor</option>
+  <option>Serui</option>
+  <option>Nabire</option>
+  <option>Timika</option>
+  <option>Merauke</option>
+  <option>Wamena</option>
+  <option>Yahukimo</option>
+  <option>Tolikara</option>
+  <option>Puncak Jaya</option>
+  <option>Asmat</option>
+  <option>Mappi</option>
+</optgroup>
+
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Alasan Bergabung</label>
+      <textarea id="alasan" placeholder="Jelaskan alasan kamu ingin bergabung"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Admin WhatsApp Tujuan</label>
+      <select id="adminWA">
+        <option value="">Pilih Admin</option>
+        <option value="6289504498328">Admin 1 — 0895-0449-8328</option>
+        <option value="6285824168807">Admin 2 — 0858-2416-8807</option>
+        <option value="6281318685216">Admin 3 — 0813-1868-5216</option>
+      </select>
+    </div>
+
+    <button class="btn-primary" onclick="cekForm()">DAFTAR SEKARANG</button>
+
+  </div>
+
+  <div class="card-footer">
+    ۝ Satu Reign, Satu Kekuasaan ۝<br>
+    <span>Website by Hironi</span>
+  </div>
+</div>
+
 
 <script>
 const modal=document.getElementById("modal");
