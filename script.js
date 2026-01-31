@@ -25,6 +25,70 @@ document.addEventListener("DOMContentLoaded", () => {
 const modal = document.getElementById("modal");
 const $ = id => document.getElementById(id);
 
+const dataIndonesia = {
+  "Sumatra":[
+    "Banda Aceh","Medan","Binjai","Padang","Pekanbaru",
+    "Jambi","Palembang","Bengkulu","Bandar Lampung",
+    "Batam","Tanjungpinang","Pangkalpinang"
+  ],
+  "Jawa":[
+    "Jakarta Pusat","Jakarta Utara","Jakarta Barat",
+    "Jakarta Selatan","Jakarta Timur",
+    "Bogor","Depok","Tangerang","Tangerang Selatan",
+    "Bekasi","Bandung","Cirebon","Semarang",
+    "Yogyakarta","Surabaya","Malang"
+  ],
+  "Kalimantan":[
+    "Pontianak","Singkawang","Palangkaraya",
+    "Banjarmasin","Banjarbaru",
+    "Samarinda","Balikpapan","Bontang","Tarakan"
+  ],
+  "Sulawesi":[
+    "Manado","Bitung","Gorontalo","Palu",
+    "Makassar","Parepare","Kendari","Baubau","Mamuju"
+  ],
+  "Bali & Nusa Tenggara":[
+    "Denpasar","Mataram","Bima",
+    "Kupang","Maumere","Labuan Bajo"
+  ],
+  "Maluku":[
+    "Ambon","Tual","Masohi","Namlea"
+  ],
+  "Papua":[
+    "Jayapura","Merauke","Timika",
+    "Nabire","Wamena","Sorong","Manokwari"
+  ]
+};
+
+const select = document.getElementById("kota");
+const search = document.getElementById("searchKota");
+
+function render(filter=""){
+  select.innerHTML = "";
+  for(const pulau in dataIndonesia){
+    const group = document.createElement("optgroup");
+    group.label = pulau;
+
+    dataIndonesia[pulau]
+      .filter(kota => kota.toLowerCase().includes(filter))
+      .forEach(kota=>{
+        const opt = document.createElement("option");
+        opt.textContent = kota;
+        group.appendChild(opt);
+      });
+
+    if(group.children.length > 0){
+      select.appendChild(group);
+    }
+  }
+}
+
+search.addEventListener("input", e=>{
+  render(e.target.value.toLowerCase());
+});
+
+render(); // load awal
+
 function cekForm() {
   if (
     !$("nama").value ||
