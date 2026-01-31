@@ -2,36 +2,32 @@
 /* =========================
    SUPER DEVIL CORE
 ========================= */
-const $ = id => document.getElementById(id);
-
-/* =========================
-   DEVIL LOADER (ANTI STUCK)
-========================= */
 let time = 10;
-const counter = $("loader-count");
-const loader  = $("devil-loader");
+const counter = document.getElementById("loader-count");
+const loader = document.getElementById("devil-loader");
 
 counter.textContent = time;
 
 const devilTimer = setInterval(() => {
   time--;
-  counter.textContent = time > 0 ? time : "0";
+  counter.textContent = time;
 
   if (time <= 0) {
     clearInterval(devilTimer);
     loader.classList.add("hide");
-    setTimeout(() => loader.remove(), 800);
+    setTimeout(() => loader.remove(), 600);
   }
 }, 1000);
 
-/* =========================
-   DEVIL TOAST WELCOME
-========================= */
 document.addEventListener("DOMContentLoaded", () => {
-  const toast = $("devil-toast");
-  setTimeout(() => toast.classList.add("show"), 600);
-  setTimeout(() => toast.classList.remove("show"), 4500);
+  const toast = document.getElementById("devil-toast");
+
+  setTimeout(() => toast.classList.add("show"), 500);
+  setTimeout(() => toast.classList.remove("show"), 4000);
 });
+
+const modal = document.getElementById("modal");
+const $ = id => document.getElementById(id);
 
 /* =========================
    DATA KOTA (JSON)
