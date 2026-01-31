@@ -3,13 +3,6 @@
    SAFE DEVIL CORE
 ====================== */
 const $ = id => document.getElementById(id);
-
-  /* ===== TOAST ===== */
-  const toast = $("devil-toast");
-  if(toast){
-    setTimeout(()=>toast.classList.add("show"),600);
-    setTimeout(()=>toast.classList.remove("show"),4500);
-  }
 /* =========================
    DATA KOTA (JSON)
 ========================= */
