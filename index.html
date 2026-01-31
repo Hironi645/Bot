@@ -6,6 +6,10 @@
 <title>DEVIL REIGN — FROM HH</title>
 
 <style>
+/* =========================
+   DEVIL REIGN — SUPER IBLIS
+   ========================= */
+
 :root{
   --blood:#ff1f1f;
   --blood-dark:#7a0000;
@@ -18,40 +22,56 @@
 
 *{
   box-sizing:border-box;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+}
+
 body{
-  background:#0b0b0b;
-  font-family: 'Segoe UI', sans-serif;
+  margin:0;
+  background:radial-gradient(circle at top,#140000,#000);
   color:#fff;
 }
 
+/* =========================
+   CARD FORM
+   ========================= */
 .card{
   max-width:420px;
   margin:40px auto;
-  background:#121212;
-  border-radius:14px;
+  background:var(--card);
+  border-radius:16px;
   overflow:hidden;
-  box-shadow:0 0 25px rgba(255,0,0,.15);
-  border:1px solid #1f1f1f;
+  box-shadow:0 0 35px rgba(255,0,0,.25);
+  border:1px solid var(--border);
+  animation:fadeUp .8s ease;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:none}
 }
 
 .card-header{
   text-align:center;
   padding:22px;
   background:linear-gradient(135deg,#8b0000,#000);
+  box-shadow:inset 0 -10px 25px rgba(0,0,0,.6);
 }
 
 .card-header h1{
   margin:0;
-  letter-spacing:2px;
+  letter-spacing:3px;
+  text-shadow:var(--glow);
 }
 
 .card-header p{
   margin-top:6px;
-  font-size:13px;
+  font-size:12px;
   color:#ffb3b3;
 }
 
+/* =========================
+   FORM BODY
+   ========================= */
 .card-body{
   padding:22px;
 }
@@ -61,7 +81,7 @@ body{
 }
 
 .field label{
-  font-size:13px;
+  font-size:12px;
   color:#ffb3b3;
   display:block;
   margin-bottom:6px;
@@ -72,18 +92,20 @@ body{
 .field textarea{
   width:100%;
   padding:12px;
-  border-radius:8px;
-  background:#1a1a1a;
-  border:1px solid #333;
+  border-radius:10px;
+  background:#141414;
+  border:1px solid #300000;
   color:#fff;
   outline:none;
+  transition:.25s;
 }
 
 .field input:focus,
 .field select:focus,
 .field textarea:focus{
-  border-color:#ff1e1e;
-  box-shadow:0 0 8px rgba(255,30,30,.4);
+  border-color:var(--blood);
+  box-shadow:0 0 12px rgba(255,30,30,.6);
+  background:#0f0f0f;
 }
 
 textarea{
@@ -91,43 +113,54 @@ textarea{
   resize:none;
 }
 
+/* =========================
+   BUTTON
+   ========================= */
 .btn-primary{
   width:100%;
   padding:14px;
   border:none;
-  border-radius:10px;
-  background:linear-gradient(135deg,#ff1e1e,#8b0000);
+  border-radius:14px;
+  background:linear-gradient(135deg,#ff1e1e,#6a0000);
   color:#fff;
-  font-weight:bold;
-  letter-spacing:1px;
+  font-weight:900;
+  letter-spacing:2px;
   cursor:pointer;
-  transition:.3s;
+  transition:.25s;
+  box-shadow:0 0 15px rgba(255,0,0,.4);
 }
 
 .btn-primary:hover{
-  transform:scale(1.02);
-  box-shadow:0 0 15px rgba(255,0,0,.5);
+  transform:translateY(-2px) scale(1.02);
+  box-shadow:0 0 30px rgba(255,0,0,.8);
 }
 
+.btn-primary:active{
+  transform:scale(.98);
+}
+
+/* =========================
+   FOOTER
+   ========================= */
 .card-footer{
   text-align:center;
   padding:14px;
-  font-size:12px;
-  color:#aaa;
-  border-top:1px solid #222;
+  font-size:11px;
+  color:#888;
+  border-top:1px solid #200000;
 }
 
 .card-footer span{
-  font-size:11px;
-  color:#666;
+  color:#500000;
 }
 
-
-/* MODAL */
+/* =========================
+   MODAL IBLIS
+   ========================= */
 #modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.8);
+  background:radial-gradient(circle,rgba(120,0,0,.15),rgba(0,0,0,.9));
   display:flex;
   align-items:center;
   justify-content:center;
@@ -143,19 +176,26 @@ textarea{
 }
 
 .modal-box{
-  background:linear-gradient(180deg,#0f0f0f,#070707);
+  background:linear-gradient(180deg,#0f0f0f,#040404);
   border:1px solid var(--border);
-  border-radius:16px;
+  border-radius:18px;
   width:90%;
   max-width:420px;
   padding:22px;
-  box-shadow:0 0 50px rgba(255,0,0,.45);
+  box-shadow:0 0 60px rgba(255,0,0,.6);
+  animation:zoomIn .4s ease;
+}
+
+@keyframes zoomIn{
+  from{transform:scale(.85);opacity:0}
+  to{transform:scale(1);opacity:1}
 }
 
 .modal-box h3{
   margin:0 0 10px;
   color:var(--blood);
   text-shadow:var(--glow);
+  letter-spacing:2px;
 }
 
 .rules{
@@ -164,6 +204,9 @@ textarea{
   color:#ddd;
 }
 
+/* =========================
+   MODAL BUTTON
+   ========================= */
 .modal-btn{
   display:flex;
   gap:12px;
@@ -172,17 +215,30 @@ textarea{
 
 .modal-btn button{
   flex:1;
-  padding:11px;
-  border-radius:12px;
-  font-weight:800;
+  padding:12px;
+  border-radius:14px;
+  font-weight:900;
+  cursor:pointer;
+  transition:.25s;
 }
 
 .cancel{
-  background:#2b2b2b;
+  background:#1f1f1f;
+  color:#aaa;
+}
+
+.cancel:hover{
+  background:#2a2a2a;
 }
 
 .ok{
   background:linear-gradient(135deg,#ff0000,#6a0000);
+  color:#fff;
+  box-shadow:0 0 15px rgba(255,0,0,.6);
+}
+
+.ok:hover{
+  box-shadow:0 0 30px rgba(255,0,0,1);
 }
 </style>
 
@@ -498,27 +554,27 @@ function cekForm(){
   const admin  = $("adminWA").value;
 
   if(!nama||!umur||!usn||!kota||!alasan){
-    toast("☠️ Data belum lengkap");
+    toast("Data belum lengkap");
     return strike();
   }
 
   if(isNaN(umur)||umur<10||umur>100){
-    toast("☠️ Umur mencurigakan");
+    toast("Umur mencurigakan");
     return strike();
   }
 
   if(nama.length<3||usn.length<3){
-    toast("☠️ Identitas tidak valid");
+    toast("Identitas tidak valid");
     return strike();
   }
 
   if(!admin){
-    toast("☠️ Admin belum dipilih");
+    toast("Admin belum dipilih");
     return;
   }
 
   if(!validAlasan(alasan)){
-    toast("☠️ Alasan ditolak sistem iblis");
+    toast("ALASAN TIDAK MASUK AKAL");
     return strike();
   }
 
@@ -544,7 +600,7 @@ function strike(){
       ">
         ☠️ AKSES DIBLOKIR ☠️<br>
         Sistem mendeteksi aktivitas tidak manusiawi
-      </div>
+      atau spam bot, spam, dan lain-lain</div>
     `;
   }
 }
@@ -567,7 +623,7 @@ DEVIL REIGN — FORM MEMBER
 ⌁ Alasan :
 ${$("alasan").value}
 ━━━━━━━━━━━━━━━
-STATUS : VERIFIKASI IBLIS
+STATUS : DI SETUJU
 ━━━━━━━━━━━━━━━
 ۝ Satu Reign, Satu Kekuasaan ۝
 `;
