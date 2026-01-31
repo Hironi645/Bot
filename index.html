@@ -592,6 +592,8 @@ let time = 10;
 const counter = document.getElementById("loader-count");
 const loader = document.getElementById("devil-loader");
 
+counter.textContent = time;
+
 const devilTimer = setInterval(() => {
   time--;
   counter.textContent = time;
@@ -601,12 +603,11 @@ const devilTimer = setInterval(() => {
     loader.classList.add("hide");
 
     setTimeout(()=>{
-      loader.style.display = "none";
+      loader.remove();
     },600);
   }
 },1000);
 
-   }
 /* =========================
    DEVIL REIGN — SUPER IBLIS KEJAM
    ========================= */
