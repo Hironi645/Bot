@@ -1,15 +1,8 @@
 <script>
-document.addEventListener("DOMContentLoaded", () => {
+(function(){
 
   const loader = document.getElementById("devil-loader");
   const counter = document.getElementById("loader-count");
-
-  // FORCE CLOSE kalau elemen hilang
-  if (!loader || !counter) {
-    console.warn("DEVIL LOADER FORCE REMOVED");
-    loader?.remove();
-    return;
-  }
 
   let time = 10;
   counter.textContent = time;
@@ -18,27 +11,19 @@ document.addEventListener("DOMContentLoaded", () => {
     time--;
     counter.textContent = time;
 
-    if (time <= 0) {
+    if(time <= 0){
       clearInterval(timer);
-
       loader.classList.add("hide");
-
-      // FORCE REMOVE walau animasi gagal
-      setTimeout(() => {
-        if (loader.parentNode) loader.remove();
-      }, 900);
+      setTimeout(()=>loader.remove(),700);
     }
-  }, 1000);
+  },1000);
 
-  // 🔥 FAILSAFE — APAPUN YANG TERJADI, 12 DETIK HILANG
-  setTimeout(() => {
-    if (loader.parentNode) {
-      loader.remove();
-      console.warn("DEVIL FAILSAFE ACTIVATED");
-    }
-  }, 12000);
+  // FAILSAFE
+  setTimeout(()=>{
+    loader?.remove();
+  },12000);
 
-});
+})();
 /* =========================
    DATA KOTA (JSON)
 ========================= */
