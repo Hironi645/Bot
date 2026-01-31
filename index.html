@@ -6,9 +6,9 @@
 <title>DEVIL REIGN — FROM HH</title>
 
 <style>
-/* =========================
-   DEVIL REIGN — SUPER IBLIS
-   ========================= */
+/* ===============================
+   SUPER MODE IBLIS — DEVIL REIGN
+   =============================== */
 
 :root{
   --blood:#ff1f1f;
@@ -17,277 +17,61 @@
   --card:#0d0d0d;
   --border:#2a0000;
   --soft:#bfbfbf;
-  --glow:0 0 25px rgba(255,30,30,.35);
+  --glow:0 0 25px rgba(255,30,30,.45);
 }
 
+/* RESET */
 *{
   box-sizing:border-box;
+  margin:0;
+  padding:0;
   font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
 }
 
-/* =========================
-   DEVIL GOD VISUAL MODE
-   ========================= */
-
-/* BACKGROUND HIDUP */
-/* =========================
-   FORBIDDEN MODE — ABSOLUTE
-   ========================= */
-
-/* CINEMATIC ENTRY */
 body{
-  animation:cinematicIn 1.2s ease forwards;
-}
-
-@keyframes cinematicIn{
-  0%{opacity:0;transform:scale(1.05)}
-  100%{opacity:1;transform:none}
-}
-
-/* =========================
-   VIGNETTE RITUAL
-   ========================= */
-body::after{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  background:radial-gradient(circle,
-    transparent 55%,
-    rgba(0,0,0,.65) 100%);
-  z-index:999;
-}
-
-/* =========================
-   BLOOD RAIN
-   ========================= */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
   background:
-    repeating-linear-gradient(
-      120deg,
-      rgba(255,0,0,.15) 0,
-      rgba(255,0,0,.15) 2px,
-      transparent 2px,
-      transparent 40px
-    );
-  animation:bloodRain 12s linear infinite;
-  z-index:998;
+    radial-gradient(circle at top,#180000 0%,#000 45%),
+    linear-gradient(180deg,#000,#0a0a0a);
+  color:#fff;
+  min-height:100vh;
 }
 
-@keyframes bloodRain{
-  from{background-position:0 0}
-  to{background-position:0 1000px}
-}
-
-@keyframes smokeMove{
-  from{filter:blur(10px);transform:translateY(10px)}
-  to{filter:blur(18px);transform:translateY(-10px)}
-}
-
-/* =========================
-   ERROR SHAKE (AKTIFKAN DENGAN CLASS)
-   ========================= */
-body.error{
-  animation:screenShake .25s linear 2;
-  background:#400000 !important;
-}
-
-@keyframes screenShake{
-  0%{transform:translate(0)}
-  25%{transform:translate(-6px,3px)}
-  50%{transform:translate(6px,-3px)}
-  75%{transform:translate(-4px,2px)}
-  100%{transform:translate(0)}
-}
-
-/* =========================
-   MODAL — GERBANG TERBUKA
-   ========================= */
-.modal-box{
-  box-shadow:
-    0 0 80px rgba(255,0,0,.9),
-    inset 0 0 40px rgba(255,0,0,.4);
-}
-
-/* =========================
-   TEXT AURA
-   ========================= */
-h1,h2,h3{
-  animation:textGlow 2.5s infinite alternate;
-}
-
-@keyframes textGlow{
-  from{text-shadow:0 0 10px rgba(255,0,0,.4)}
-  to{text-shadow:0 0 30px rgba(255,0,0,1)}
-}
-
-
-/* =========================
-   CARD — JANTUNG IBLIS
-   ========================= */
-.card{
-  position:relative;
-  animation:heartBeat 3s infinite;
-}
-
-@keyframes heartBeat{
-  0%,100%{transform:scale(1)}
-  10%{transform:scale(1.01)}
-  20%{transform:scale(.99)}
-  30%{transform:scale(1.015)}
-}
-
-/* AURA DARAH */
-.card::before{
-  content:"";
-  position:absolute;
-  inset:-2px;
-  border-radius:18px;
-  background:linear-gradient(
-    45deg,
-    transparent,
-    rgba(255,0,0,.6),
-    transparent
-  );
-  animation:auraMove 4s linear infinite;
-  z-index:-1;
-}
-
-@keyframes auraMove{
-  from{transform:rotate(0deg)}
-  to{transform:rotate(360deg)}
-}
-
-/* =========================
-   HEADER — API IBLIS
-   ========================= */
-.card-header{
-  position:relative;
-  overflow:hidden;
-}
-
-.card-header::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(circle at bottom,
-      rgba(255,0,0,.45),
-      transparent 60%);
-  animation:fireMove 3s infinite alternate;
-}
-
-@keyframes fireMove{
-  from{transform:translateY(10px)}
-  to{transform:translateY(-10px)}
-}
-
-/* =========================
-   INPUT — REAKSI IBLIS
-   ========================= */
-.field input:focus,
-.field textarea:focus,
-.field select:focus{
-  animation:evilFocus .4s ease;
-}
-
-@keyframes evilFocus{
-  0%{box-shadow:0 0 0 rgba(255,0,0,0)}
-  100%{box-shadow:0 0 18px rgba(255,0,0,.9)}
-}
-
-/* =========================
-   BUTTON — NAFAS API
-   ========================= */
-.btn-primary{
-  position:relative;
-  overflow:hidden;
-}
-
-.btn-primary::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(
-      120deg,
-      transparent 30%,
-      rgba(255,255,255,.25),
-      transparent 70%
-    );
-  transform:translateX(-100%);
-}
-
-.btn-primary:hover::after{
-  animation:slash 1s;
-}
-
-@keyframes slash{
-  to{transform:translateX(100%)}
-}
-
-/* =========================
-   MODAL — GERBANG NERAKA
-   ========================= */
-#modal{
-  backdrop-filter:blur(6px);
-}
-
-.modal-box{
-  animation:gateOpen .45s cubic-bezier(.2,.9,.3,1);
-}
-
-@keyframes gateOpen{
-  0%{transform:scale(.7) rotateX(20deg);opacity:0}
-  100%{transform:scale(1);opacity:1}
-}
-
-/* =========================
-   ERROR MODE — BLOOD LOCK
-   ========================= */
-body.locked{
-  animation:none;
-  background:#300000 !important;
-}
-
-body.locked *{
-  filter:grayscale(1);
-}
-
-
-/* =========================
-   CARD FORM
-   ========================= */
+/* ===============================
+   CARD
+   =============================== */
 .card{
   max-width:420px;
   margin:40px auto;
-  background:var(--card);
-  border-radius:16px;
+  background:linear-gradient(180deg,#121212,#070707);
+  border-radius:18px;
   overflow:hidden;
-  box-shadow:0 0 35px rgba(255,0,0,.25);
   border:1px solid var(--border);
-  animation:fadeUp .8s ease;
+  box-shadow:
+    0 0 35px rgba(255,0,0,.25),
+    inset 0 0 25px rgba(255,0,0,.05);
+  animation:cardPulse 4s infinite alternate;
 }
 
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:none}
+@keyframes cardPulse{
+  from{box-shadow:0 0 25px rgba(255,0,0,.2);}
+  to{box-shadow:0 0 45px rgba(255,0,0,.45);}
 }
 
+/* ===============================
+   HEADER
+   =============================== */
 .card-header{
   text-align:center;
-  padding:22px;
-  background:linear-gradient(135deg,#8b0000,#000);
-  box-shadow:inset 0 -10px 25px rgba(0,0,0,.6);
+  padding:24px;
+  background:
+    linear-gradient(135deg,#8b0000,#000);
+  border-bottom:1px solid #2a0000;
 }
 
 .card-header h1{
-  margin:0;
+  font-size:20px;
   letter-spacing:3px;
+  color:#fff;
   text-shadow:var(--glow);
 }
 
@@ -297,9 +81,9 @@ body.locked *{
   color:#ffb3b3;
 }
 
-/* =========================
-   FORM BODY
-   ========================= */
+/* ===============================
+   BODY
+   =============================== */
 .card-body{
   padding:22px;
 }
@@ -310,30 +94,37 @@ body.locked *{
 
 .field label{
   font-size:12px;
-  color:#ffb3b3;
+  letter-spacing:1px;
+  color:#ff9b9b;
   display:block;
   margin-bottom:6px;
 }
 
+/* INPUT */
 .field input,
 .field select,
 .field textarea{
   width:100%;
   padding:12px;
   border-radius:10px;
-  background:#141414;
-  border:1px solid #300000;
+  background:#111;
+  border:1px solid #2b2b2b;
   color:#fff;
   outline:none;
   transition:.25s;
+}
+
+.field input::placeholder,
+.field textarea::placeholder{
+  color:#777;
 }
 
 .field input:focus,
 .field select:focus,
 .field textarea:focus{
   border-color:var(--blood);
-  box-shadow:0 0 12px rgba(255,30,30,.6);
-  background:#0f0f0f;
+  box-shadow:0 0 10px rgba(255,30,30,.6);
+  background:#0b0b0b;
 }
 
 textarea{
@@ -341,60 +132,62 @@ textarea{
   resize:none;
 }
 
-/* =========================
+/* ===============================
    BUTTON
-   ========================= */
+   =============================== */
 .btn-primary{
   width:100%;
-  padding:14px;
+  padding:15px;
   border:none;
   border-radius:14px;
-  background:linear-gradient(135deg,#ff1e1e,#6a0000);
+  background:
+    linear-gradient(135deg,#ff1e1e,#7a0000);
   color:#fff;
   font-weight:900;
   letter-spacing:2px;
   cursor:pointer;
-  transition:.25s;
-  box-shadow:0 0 15px rgba(255,0,0,.4);
+  transition:.3s;
+  box-shadow:0 0 18px rgba(255,0,0,.45);
 }
 
 .btn-primary:hover{
-  transform:translateY(-2px) scale(1.02);
-  box-shadow:0 0 30px rgba(255,0,0,.8);
+  transform:scale(1.04);
+  box-shadow:0 0 35px rgba(255,0,0,.8);
 }
 
 .btn-primary:active{
-  transform:scale(.98);
+  transform:scale(.97);
 }
 
-/* =========================
+/* ===============================
    FOOTER
-   ========================= */
+   =============================== */
 .card-footer{
   text-align:center;
   padding:14px;
   font-size:11px;
-  color:#888;
-  border-top:1px solid #200000;
+  color:#aaa;
+  border-top:1px solid #1b1b1b;
 }
 
 .card-footer span{
-  color:#500000;
+  color:#666;
+  font-size:10px;
 }
 
-/* =========================
-   MODAL IBLIS
-   ========================= */
+/* ===============================
+   MODAL
+   =============================== */
 #modal{
   position:fixed;
   inset:0;
-  background:radial-gradient(circle,rgba(120,0,0,.15),rgba(0,0,0,.9));
+  background:rgba(0,0,0,.88);
   display:flex;
   align-items:center;
   justify-content:center;
   opacity:0;
   pointer-events:none;
-  transition:.3s;
+  transition:.35s;
   z-index:999;
 }
 
@@ -403,72 +196,81 @@ textarea{
   pointer-events:auto;
 }
 
+/* MODAL BOX */
 .modal-box{
-  background:linear-gradient(180deg,#0f0f0f,#040404);
+  background:
+    linear-gradient(180deg,#0f0f0f,#050505);
   border:1px solid var(--border);
-  border-radius:18px;
+  border-radius:20px;
   width:90%;
   max-width:420px;
   padding:22px;
-  box-shadow:0 0 60px rgba(255,0,0,.6);
-  animation:zoomIn .4s ease;
+  box-shadow:
+    0 0 55px rgba(255,0,0,.6),
+    inset 0 0 20px rgba(255,0,0,.08);
+  animation:modalRise .35s ease;
 }
 
-@keyframes zoomIn{
-  from{transform:scale(.85);opacity:0}
-  to{transform:scale(1);opacity:1}
+@keyframes modalRise{
+  from{transform:scale(.85);opacity:0;}
+  to{transform:scale(1);opacity:1;}
 }
 
 .modal-box h3{
-  margin:0 0 10px;
+  margin-bottom:10px;
   color:var(--blood);
-  text-shadow:var(--glow);
   letter-spacing:2px;
+  text-shadow:var(--glow);
 }
 
+/* RULES */
 .rules{
   font-size:13px;
   line-height:1.7;
   color:#ddd;
 }
 
-/* =========================
-   MODAL BUTTON
-   ========================= */
+/* MODAL BUTTON */
 .modal-btn{
   display:flex;
   gap:12px;
-  margin-top:18px;
+  margin-top:20px;
 }
 
 .modal-btn button{
   flex:1;
   padding:12px;
+  border:none;
   border-radius:14px;
   font-weight:900;
+  letter-spacing:1px;
   cursor:pointer;
-  transition:.25s;
+  transition:.3s;
 }
 
+/* CANCEL */
 .cancel{
-  background:#1f1f1f;
+  background:#222;
   color:#aaa;
 }
 
 .cancel:hover{
-  background:#2a2a2a;
+  background:#333;
 }
 
+/* OK */
 .ok{
-  background:linear-gradient(135deg,#ff0000,#6a0000);
+  background:linear-gradient(135deg,#ff0000,#5a0000);
   color:#fff;
-  box-shadow:0 0 15px rgba(255,0,0,.6);
+  box-shadow:0 0 18px rgba(255,0,0,.6);
 }
 
 .ok:hover{
-  box-shadow:0 0 30px rgba(255,0,0,1);
+  transform:scale(1.05);
+  box-shadow:0 0 35px rgba(255,0,0,.9);
 }
 </style>
+
 
 </head>
 
