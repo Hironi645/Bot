@@ -48,41 +48,82 @@ const dataIndonesia = {
     "Makassar","Parepare","Kendari","Baubau","Mamuju"
   ],
   "Bali & Nusa Tenggara":[
-    "Denpasar","Mataram","Bima",
-    "Kupang","Maumere","Labuan Bajo"
+    "Denpasar","Mataram","Bima","Kupang","Maumere","Labuan Bajo"
   ],
   "Maluku":[
     "Ambon","Tual","Masohi","Namlea"
   ],
   "Papua":[
-    "Jayapura","Merauke","Timika",
-    "Nabire","Wamena","Sorong","Manokwari"
+    "Jayapura","Merauke","Timika","Nabire","Wamena","Sorong","Manokwari"
   ]
 };
 
-const select = document.getElementById("kota");
-const search = document.getElementById("searchKota");
+const input = document.getElementById("searchKota");
+const dropdown = document.getElementById("dropdown");
+const hidden = document.getElementById("kotaTerpilih");
+let activeIndex = -1;
+let items = [];
 
 function render(filter=""){
-  select.innerHTML = "";
+  dropdown.innerHTML="";
+  items=[];
+  activeIndex=-1;
+
   for(const pulau in dataIndonesia){
-    const group = document.createElement("optgroup");
-    group.label = pulau;
+    const hasil = dataIndonesia[pulau].filter(k =>
+      k.toLowerCase().includes(filter)
+    );
+    if(hasil.length){
+      const g = document.createElement("div");
+      g.className="group";
+      g.textContent=pulau;
+      dropdown.appendChild(g);
 
-    dataIndonesia[pulau]
-      .filter(kota => kota.toLowerCase().includes(filter))
-      .forEach(kota=>{
-        const opt = document.createElement("option");
-        opt.textContent = kota;
-        group.appendChild(opt);
+      hasil.forEach(kota=>{
+        const div=document.createElement("div");
+        div.className="item";
+        div.innerHTML=kota.replace(
+          new RegExp(filter,"ig"),
+          m=>`<b>${m}</b>`
+        );
+        div.onclick=()=>{
+          input.value=kota;
+          hidden.value=kota;
+          dropdown.style.display="none";
+        };
+        dropdown.appendChild(div);
+        items.push(div);
       });
-
-    if(group.children.length > 0){
-      select.appendChild(group);
     }
   }
+  dropdown.style.display = items.length ? "block":"none";
 }
 
+input.addEventListener("input", e=>{
+  render(e.target.value.toLowerCase());
+});
+
+input.addEventListener("keydown", e=>{
+  if(!items.length) return;
+
+  if(e.key==="ArrowDown"){
+    activeIndex=(activeIndex+1)%items.length;
+  }else if(e.key==="ArrowUp"){
+    activeIndex=(activeIndex-1+items.length)%items.length;
+  }else if(e.key==="Enter"){
+    items[activeIndex]?.click();
+    return;
+  }else return;
+
+  items.forEach(i=>i.classList.remove("active"));
+  items[activeIndex]?.classList.add("active");
+});
+
+document.addEventListener("click", e=>{
+  if(!e.target.closest(".field")){
+    dropdown.style.display="none";
+  }
+});
 search.addEventListener("input", e=>{
   render(e.target.value.toLowerCase());
 });
