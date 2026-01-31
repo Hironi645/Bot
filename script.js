@@ -1,11 +1,4 @@
 <script>
-/* ======================
-   SAFE DEVIL CORE
-====================== */
-const $ = id => document.getElementById(id);
-/* =========================
-   DATA KOTA (JSON)
-========================= */
 const dataIndonesia = {
   "Sumatra":[
     "Banda Aceh","Medan","Binjai","Padang","Pekanbaru",
