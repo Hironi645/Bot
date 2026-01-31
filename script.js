@@ -1,33 +1,38 @@
 <script>
-/* =========================
-   SUPER DEVIL CORE
-========================= */
-let time = 10;
-const counter = document.getElementById("loader-count");
-const loader = document.getElementById("devil-loader");
-
-counter.textContent = time;
-
-const devilTimer = setInterval(() => {
-  time--;
-  counter.textContent = time;
-
-  if (time <= 0) {
-    clearInterval(devilTimer);
-    loader.classList.add("hide");
-    setTimeout(() => loader.remove(), 600);
-  }
-}, 1000);
-
 document.addEventListener("DOMContentLoaded", () => {
-  const toast = document.getElementById("devil-toast");
 
-  setTimeout(() => toast.classList.add("show"), 500);
-  setTimeout(() => toast.classList.remove("show"), 4000);
+  const loader  = document.getElementById("devil-loader");
+  const counter = document.getElementById("loader-count");
+
+  if (!loader || !counter) {
+    console.error("DEVIL LOADER ELEMENT NOT FOUND");
+    return;
+  }
+
+  const DURATION = 10; // detik
+  const startTime = Date.now();
+
+  function updateLoader() {
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    const remain = DURATION - elapsed;
+
+    counter.textContent = remain > 0 ? remain : "0";
+
+    if (elapsed >= DURATION) {
+      loader.classList.add("hide");
+
+      setTimeout(() => {
+        loader.remove();
+      }, 800);
+
+    } else {
+      requestAnimationFrame(updateLoader);
+    }
+  }
+
+  updateLoader();
+
 });
-
-const modal = document.getElementById("modal");
-const $ = id => document.getElementById(id);
 
 /* =========================
    DATA KOTA (JSON)
