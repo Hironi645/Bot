@@ -120,6 +120,21 @@ body{
   box-shadow:var(--glow);
 }
 
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+#searchKota{
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+#kota{
+  padding:10px;
+  border-radius:8px;
+}
+
 /* BUTTON */
 .btn-primary{
   width:100%;
