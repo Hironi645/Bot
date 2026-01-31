@@ -45,9 +45,10 @@ body{
 
 #devil-loader.hide{
   opacity:0;
-  visibility:hidden;
-  transition:.6s;
+  pointer-events:none;
+  transition:0.8s ease;
 }
+
 
 /* TOAST */
 #devil-toast{
