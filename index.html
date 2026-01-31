@@ -173,7 +173,72 @@ body{
     visibility:hidden;
   }
 }
+/* ===============================
+   DEVIL NOTIFICATION
+   =============================== */
+#devil-toast{
+  position:fixed;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:99999;
+  opacity:0;
+  pointer-events:none;
+}
 
+#devil-toast.show{
+  animation:toastIn .6s forwards;
+}
+
+#devil-toast.hide{
+  animation:toastOut .6s forwards;
+}
+
+.toast-box{
+  background:
+    linear-gradient(180deg,#120000,#050000);
+  border:1px solid #ff1f1f;
+  padding:16px 22px;
+  border-radius:16px;
+  text-align:center;
+  box-shadow:
+    0 0 25px rgba(255,0,0,.6),
+    inset 0 0 15px rgba(255,0,0,.25);
+}
+
+.toast-box h3{
+  margin:0;
+  font-size:16px;
+  letter-spacing:2px;
+  color:#ff2b2b;
+  text-shadow:0 0 15px rgba(255,0,0,.8);
+}
+
+.toast-box p{
+  margin-top:6px;
+  font-size:13px;
+  color:#ffd1d1;
+  line-height:1.5;
+}
+
+/* ANIMATION */
+@keyframes toastIn{
+  from{
+    opacity:0;
+    transform:translate(-50%,-20px) scale(.9);
+  }
+  to{
+    opacity:1;
+    transform:translate(-50%,0) scale(1);
+  }
+}
+
+@keyframes toastOut{
+  to{
+    opacity:0;
+    transform:translate(-50%,-20px) scale(.9);
+  }
+}
 /* INPUT */
 .field input,
 .field select,
@@ -357,6 +422,12 @@ textarea{
       <p>Sedang loading mohon menunggu</p>
       <span id="loader-count">10</span>s
     </div>
+  </div>
+</div>
+<div id="devil-toast">
+  <div class="toast-box">
+    <h3>SELAMAT DATANG</h3>
+    <p>DI WEB INTRO<br>Silahkan di isi</p>
   </div>
 </div>
 
@@ -608,6 +679,22 @@ const devilTimer = setInterval(() => {
   }
 },1000);
 
+document.addEventListener("DOMContentLoaded", function(){
+
+  const toast = document.getElementById("devil-toast");
+
+  // muncul
+  setTimeout(() => {
+    toast.classList.add("show");
+  }, 500);
+
+  // hilang otomatis
+  setTimeout(() => {
+    toast.classList.remove("show");
+    toast.classList.add("hide");
+  }, 4000);
+
+});
 /* =========================
    DEVIL REIGN — SUPER IBLIS KEJAM
    ========================= */
