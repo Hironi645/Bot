@@ -83,20 +83,6 @@ body::before{
   to{background-position:0 1000px}
 }
 
-/* =========================
-   HELL SMOKE
-   ========================= */
-.card::after{
-  content:"";
-  position:absolute;
-  inset:-30px;
-  background:
-    radial-gradient(circle at 30% 80%, rgba(255,0,0,.15), transparent 60%),
-    radial-gradient(circle at 70% 20%, rgba(120,0,0,.2), transparent 65%);
-  animation:smokeMove 8s infinite alternate;
-  z-index:-1;
-}
-
 @keyframes smokeMove{
   from{filter:blur(10px);transform:translateY(10px)}
   to{filter:blur(18px);transform:translateY(-10px)}
