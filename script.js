@@ -1,30 +1,41 @@
+<script>
+/* =========================
+   SUPER DEVIL CORE
+========================= */
+const $ = id => document.getElementById(id);
+
+/* =========================
+   DEVIL LOADER (ANTI STUCK)
+========================= */
 let time = 10;
-const counter = document.getElementById("loader-count");
-const loader = document.getElementById("devil-loader");
+const counter = $("loader-count");
+const loader  = $("devil-loader");
 
 counter.textContent = time;
 
 const devilTimer = setInterval(() => {
   time--;
-  counter.textContent = time;
+  counter.textContent = time > 0 ? time : "0";
 
   if (time <= 0) {
     clearInterval(devilTimer);
     loader.classList.add("hide");
-    setTimeout(() => loader.remove(), 600);
+    setTimeout(() => loader.remove(), 800);
   }
 }, 1000);
 
+/* =========================
+   DEVIL TOAST WELCOME
+========================= */
 document.addEventListener("DOMContentLoaded", () => {
-  const toast = document.getElementById("devil-toast");
-
-  setTimeout(() => toast.classList.add("show"), 500);
-  setTimeout(() => toast.classList.remove("show"), 4000);
+  const toast = $("devil-toast");
+  setTimeout(() => toast.classList.add("show"), 600);
+  setTimeout(() => toast.classList.remove("show"), 4500);
 });
 
-const modal = document.getElementById("modal");
-const $ = id => document.getElementById(id);
-
+/* =========================
+   DATA KOTA (JSON)
+========================= */
 const dataIndonesia = {
   "Sumatra":[
     "Banda Aceh","Medan","Binjai","Padang","Pekanbaru",
@@ -58,45 +69,52 @@ const dataIndonesia = {
   ]
 };
 
-const input = document.getElementById("searchKota");
-const dropdown = document.getElementById("dropdown");
-const hidden = document.getElementById("kotaTerpilih");
+/* =========================
+   DEVIL SEARCH ENGINE
+========================= */
+const input    = $("searchKota");
+const dropdown = $("dropdown");
+const hidden   = $("kota");
 let activeIndex = -1;
 let items = [];
 
 function render(filter=""){
-  dropdown.innerHTML="";
-  items=[];
-  activeIndex=-1;
+  dropdown.innerHTML = "";
+  items = [];
+  activeIndex = -1;
 
   for(const pulau in dataIndonesia){
     const hasil = dataIndonesia[pulau].filter(k =>
       k.toLowerCase().includes(filter)
     );
-    if(hasil.length){
-      const g = document.createElement("div");
-      g.className="group";
-      g.textContent=pulau;
-      dropdown.appendChild(g);
 
-      hasil.forEach(kota=>{
-        const div=document.createElement("div");
-        div.className="item";
-        div.innerHTML=kota.replace(
-          new RegExp(filter,"ig"),
-          m=>`<b>${m}</b>`
-        );
-        div.onclick=()=>{
-          input.value=kota;
-          hidden.value=kota;
-          dropdown.style.display="none";
-        };
-        dropdown.appendChild(div);
-        items.push(div);
-      });
-    }
+    if(!hasil.length) continue;
+
+    const g = document.createElement("div");
+    g.className = "group";
+    g.textContent = `☠ ${pulau}`;
+    dropdown.appendChild(g);
+
+    hasil.forEach(kota=>{
+      const div = document.createElement("div");
+      div.className = "item";
+      div.innerHTML = kota.replace(
+        new RegExp(filter,"ig"),
+        m => `<span class="blood">${m}</span>`
+      );
+
+      div.onclick = () => {
+        input.value = kota;
+        hidden.value = kota;
+        dropdown.style.display = "none";
+      };
+
+      dropdown.appendChild(div);
+      items.push(div);
+    });
   }
-  dropdown.style.display = items.length ? "block":"none";
+
+  dropdown.style.display = items.length ? "block" : "none";
 }
 
 input.addEventListener("input", e=>{
@@ -106,52 +124,61 @@ input.addEventListener("input", e=>{
 input.addEventListener("keydown", e=>{
   if(!items.length) return;
 
-  if(e.key==="ArrowDown"){
-    activeIndex=(activeIndex+1)%items.length;
-  }else if(e.key==="ArrowUp"){
-    activeIndex=(activeIndex-1+items.length)%items.length;
-  }else if(e.key==="Enter"){
+  if(e.key === "ArrowDown"){
+    activeIndex = (activeIndex + 1) % items.length;
+  }
+  else if(e.key === "ArrowUp"){
+    activeIndex = (activeIndex - 1 + items.length) % items.length;
+  }
+  else if(e.key === "Enter"){
     items[activeIndex]?.click();
     return;
-  }else return;
+  }
 
-  items.forEach(i=>i.classList.remove("active"));
+  items.forEach(i => i.classList.remove("active"));
   items[activeIndex]?.classList.add("active");
 });
 
 document.addEventListener("click", e=>{
   if(!e.target.closest(".field")){
-    dropdown.style.display="none";
+    dropdown.style.display = "none";
   }
 });
-search.addEventListener("input", e=>{
-  render(e.target.value.toLowerCase());
-});
 
-render(); // load awal
+/* =========================
+   DEVIL FORM CHECK
+========================= */
+const modal = $("modal");
 
-function cekForm() {
-  if (
-    !$("nama").value ||
-    !$("umur").value ||
-    !$("usn").value ||
-    !$("kota").value ||
-    !$("alasan").value
-  ) {
-    alert("Data belum lengkap");
-    return;
+function devilAlert(msg){
+  alert("☠ DEVIL WARNING ☠\n\n" + msg);
+}
+
+function cekForm(){
+  const wajib = ["nama","umur","usn","kota","alasan"];
+  for(const id of wajib){
+    if(!$(id).value.trim()){
+      devilAlert("DATA BELUM LENGKAP");
+      $(id).focus();
+      return;
+    }
   }
   modal.classList.add("show");
 }
 
-function kirim() {
+/* =========================
+   DEVIL SEND WHATSAPP
+========================= */
+function kirim(){
   const pesan = `
-DEVIL REIGN — FORM MEMBER
-Nama : ${$("nama").value}
-Umur : ${$("umur").value}
-USN : ${$("usn").value}
-Kota : ${$("kota").value}
-Alasan :
+🔥 DEVIL REIGN — FORM MEMBER 🔥
+
+👤 Nama  : ${$("nama").value}
+🎂 Umur  : ${$("umur").value}
+🆔 USN   : ${$("usn").value}
+🌍 Kota  : ${$("kota").value}
+
+🩸 Alasan Bergabung :
 ${$("alasan").value}
 `;
 
@@ -160,3 +187,4 @@ ${$("alasan").value}
     "_blank"
   );
 }
+</script>
