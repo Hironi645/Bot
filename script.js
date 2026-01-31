@@ -4,43 +4,6 @@
 ====================== */
 const $ = id => document.getElementById(id);
 
-/* ======================
-   DEVIL LOADER (ISOLATED)
-====================== */
-(function(){
-  const loader = $("devil-loader");
-  const counter = $("loader-count");
-
-  if(!loader || !counter){
-    console.warn("Loader element missing");
-    return;
-  }
-
-  let time = 10;
-  counter.textContent = time;
-
-  const timer = setInterval(()=>{
-    time--;
-    counter.textContent = time;
-
-    if(time <= 0){
-      clearInterval(timer);
-      loader.classList.add("hide");
-      setTimeout(()=>loader.remove(),800);
-    }
-  },1000);
-
-  // FAILSAFE
-  setTimeout(()=>{
-    if(loader.parentNode) loader.remove();
-  },12000);
-})();
-
-/* ======================
-   WAIT DOM READY
-====================== */
-document.addEventListener("DOMContentLoaded", ()=>{
-
   /* ===== TOAST ===== */
   const toast = $("devil-toast");
   if(toast){
