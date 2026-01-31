@@ -37,16 +37,16 @@ body{
   border:4px solid #300;
   border-top-color:red;
   animation:spin 1s linear infinite;
-  box-shadow:var(--glow);
-  margin-bottom:20px;
 }
 
-@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
 
 #devil-loader.hide{
   opacity:0;
+  transition:.6s;
   pointer-events:none;
-  transition:0.8s ease;
 }
 
 
