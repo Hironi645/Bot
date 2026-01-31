@@ -30,21 +30,115 @@
    ========================= */
 
 /* BACKGROUND HIDUP */
+/* =========================
+   FORBIDDEN MODE — ABSOLUTE
+   ========================= */
+
+/* CINEMATIC ENTRY */
 body{
-  margin:0;
-  color:#fff;
-  background:
-    radial-gradient(circle at 20% 10%, rgba(120,0,0,.25), transparent 40%),
-    radial-gradient(circle at 80% 30%, rgba(255,0,0,.15), transparent 45%),
-    radial-gradient(circle at 50% 80%, rgba(80,0,0,.2), transparent 50%),
-    #000;
-  animation:bloodPulse 8s infinite alternate;
+  animation:cinematicIn 1.2s ease forwards;
 }
 
-@keyframes bloodPulse{
-  0%{filter:brightness(.9)}
-  100%{filter:brightness(1.05)}
+@keyframes cinematicIn{
+  0%{opacity:0;transform:scale(1.05)}
+  100%{opacity:1;transform:none}
 }
+
+/* =========================
+   VIGNETTE RITUAL
+   ========================= */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:radial-gradient(circle,
+    transparent 55%,
+    rgba(0,0,0,.65) 100%);
+  z-index:999;
+}
+
+/* =========================
+   BLOOD RAIN
+   ========================= */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    repeating-linear-gradient(
+      120deg,
+      rgba(255,0,0,.15) 0,
+      rgba(255,0,0,.15) 2px,
+      transparent 2px,
+      transparent 40px
+    );
+  animation:bloodRain 12s linear infinite;
+  z-index:998;
+}
+
+@keyframes bloodRain{
+  from{background-position:0 0}
+  to{background-position:0 1000px}
+}
+
+/* =========================
+   HELL SMOKE
+   ========================= */
+.card::after{
+  content:"";
+  position:absolute;
+  inset:-30px;
+  background:
+    radial-gradient(circle at 30% 80%, rgba(255,0,0,.15), transparent 60%),
+    radial-gradient(circle at 70% 20%, rgba(120,0,0,.2), transparent 65%);
+  animation:smokeMove 8s infinite alternate;
+  z-index:-1;
+}
+
+@keyframes smokeMove{
+  from{filter:blur(10px);transform:translateY(10px)}
+  to{filter:blur(18px);transform:translateY(-10px)}
+}
+
+/* =========================
+   ERROR SHAKE (AKTIFKAN DENGAN CLASS)
+   ========================= */
+body.error{
+  animation:screenShake .25s linear 2;
+  background:#400000 !important;
+}
+
+@keyframes screenShake{
+  0%{transform:translate(0)}
+  25%{transform:translate(-6px,3px)}
+  50%{transform:translate(6px,-3px)}
+  75%{transform:translate(-4px,2px)}
+  100%{transform:translate(0)}
+}
+
+/* =========================
+   MODAL — GERBANG TERBUKA
+   ========================= */
+.modal-box{
+  box-shadow:
+    0 0 80px rgba(255,0,0,.9),
+    inset 0 0 40px rgba(255,0,0,.4);
+}
+
+/* =========================
+   TEXT AURA
+   ========================= */
+h1,h2,h3{
+  animation:textGlow 2.5s infinite alternate;
+}
+
+@keyframes textGlow{
+  from{text-shadow:0 0 10px rgba(255,0,0,.4)}
+  to{text-shadow:0 0 30px rgba(255,0,0,1)}
+}
+
 
 /* =========================
    CARD — JANTUNG IBLIS
