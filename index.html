@@ -1,85 +1,596 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>DEVIL REIGN — FROM HH</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sedang Dalam Perbaikan - Maintenance Mode</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<link rel="stylesheet" href="style.css">
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e1e2e 0%, #2d2d44 100%);
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Background Pattern */
+        .bg-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255, 193, 7, 0.05) 35px, rgba(255, 193, 7, 0.05) 70px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(255, 152, 0, 0.03) 35px, rgba(255, 152, 0, 0.03) 70px);
+            z-index: 1;
+        }
+
+        /* Floating Particles */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 193, 7, 0.3);
+            border-radius: 50%;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Gear Animation */
+        .gear-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin-bottom: 40px;
+        }
+
+        .gear {
+            position: absolute;
+            color: #ffc107;
+            filter: drop-shadow(0 0 20px rgba(255, 193, 7, 0.5));
+        }
+
+        .gear-large {
+            font-size: 120px;
+            top: 20px;
+            left: 20px;
+            animation: spin 8s linear infinite;
+        }
+
+        .gear-small {
+            font-size: 80px;
+            top: 80px;
+            right: 20px;
+            animation: spin-reverse 6s linear infinite;
+            color: #ff9800;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes spin-reverse {
+            from { transform: rotate(360deg); }
+            to { transform: rotate(0deg); }
+        }
+
+        /* Wrench Animation */
+        .wrench {
+            position: absolute;
+            font-size: 60px;
+            color: #ff6b6b;
+            top: -20px;
+            right: 0;
+            animation: wrench-move 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 107, 107, 0.5));
+        }
+
+        @keyframes wrench-move {
+            0%, 100% { transform: rotate(-15deg) translateX(0); }
+            50% { transform: rotate(15deg) translateX(10px); }
+        }
+
+        /* Main Title */
+        .title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            text-shadow: 0 0 30px rgba(255, 193, 7, 0.5);
+        }
+
+        .title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #ffc107, #ff9800);
+            border-radius: 2px;
+            animation: line-grow 2s ease-out infinite alternate;
+        }
+
+        @keyframes line-grow {
+            from { width: 50px; }
+            to { width: 150px; }
+        }
+
+        /* Blinking Text */
+        .blink-text {
+            font-size: 1.5rem;
+            color: #ffc107;
+            margin-bottom: 30px;
+            animation: blink 1.5s ease-in-out infinite;
+            font-weight: 600;
+        }
+
+        @keyframes blink {
+            0%, 50%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0.3; }
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            max-width: 500px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            border: 2px solid rgba(255, 193, 7, 0.3);
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #ffc107, #ff9800, #ff6b6b);
+            width: 0%;
+            border-radius: 13px;
+            position: relative;
+            animation: load 4s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(255, 193, 7, 0.5);
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.4),
+                transparent
+            );
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes load {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Progress Percentage */
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-weight: bold;
+            font-size: 14px;
+            z-index: 1;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Tools Icons Animation */
+        .tools-row {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+
+        .tool-icon {
+            animation: tool-bounce 2s ease-in-out infinite;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+        }
+
+        .tool-icon:nth-child(1) { animation-delay: 0s; color: #ffc107; }
+        .tool-icon:nth-child(2) { animation-delay: 0.3s; color: #ff9800; }
+        .tool-icon:nth-child(3) { animation-delay: 0.6s; color: #ff6b6b; }
+        .tool-icon:nth-child(4) { animation-delay: 0.9s; color: #4ecdc4; }
+
+        @keyframes tool-bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        /* Info Card */
+        .info-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 193, 7, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 600px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .info-card p {
+            color: #b0b0b0;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .eta {
+            color: #ffc107;
+            font-weight: bold;
+            margin-top: 15px;
+            font-size: 1.2rem;
+        }
+
+        /* Music Control */
+        .music-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+            background: rgba(255, 193, 7, 0.2);
+            border: 2px solid #ffc107;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+            background: rgba(255, 193, 7, 0.4);
+            box-shadow: 0 0 30px rgba(255, 193, 7, 0.6);
+        }
+
+        .music-control.playing {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.7); }
+            50% { box-shadow: 0 0 0 20px rgba(255, 193, 7, 0); }
+        }
+
+        .music-icon {
+            font-size: 28px;
+            color: #ffc107;
+        }
+
+        /* Sound Waves Animation */
+        .sound-waves {
+            position: fixed;
+            bottom: 100px;
+            right: 40px;
+            display: none;
+            align-items: center;
+            gap: 3px;
+            height: 30px;
+        }
+
+        .sound-waves.active {
+            display: flex;
+        }
+
+        .wave {
+            width: 4px;
+            background: #ffc107;
+            border-radius: 2px;
+            animation: wave 1s ease-in-out infinite;
+        }
+
+        .wave:nth-child(1) { height: 10px; animation-delay: 0s; }
+        .wave:nth-child(2) { height: 20px; animation-delay: 0.1s; }
+        .wave:nth-child(3) { height: 15px; animation-delay: 0.2s; }
+        .wave:nth-child(4) { height: 25px; animation-delay: 0.3s; }
+        .wave:nth-child(5) { height: 12px; animation-delay: 0.4s; }
+
+        @keyframes wave {
+            0%, 100% { transform: scaleY(0.5); opacity: 0.5; }
+            50% { transform: scaleY(1); opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .title { font-size: 2rem; }
+            .gear-container { width: 150px; height: 150px; }
+            .gear-large { font-size: 90px; }
+            .gear-small { font-size: 60px; top: 60px; }
+            .tools-row { font-size: 2rem; gap: 20px; }
+        }
+
+        /* CRT Effect Overlay */
+        .crt::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+            background-size: 100% 4px;
+            z-index: 2;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+    </style>
 </head>
-<body>
+<body class="crt">
+    <div class="bg-pattern"></div>
+    
+    <!-- Particles -->
+    <div class="particles" id="particles"></div>
 
-<div class="card">
-  <div class="card-header">
-    <h1>۝ DEVIL REIGN ۝</h1>
-    <p>OFFICIAL MEMBER REGISTRATION</p>
-  </div>
+    <div class="container">
+        <!-- Animated Gears -->
+        <div class="gear-container">
+            <div class="gear gear-large">⚙️</div>
+            <div class="gear gear-small">⚙️</div>
+            <div class="wrench">🔧</div>
+        </div>
 
-  <div class="card-body">
+        <!-- Title -->
+        <h1 class="title">Sedang Perbaikan</h1>
+        
+        <div class="blink-text">🔨 Website sedang dalam maintenance 🔨</div>
 
-    <div class="field">
-      <label>Nama Lengkap</label>
-      <input id="nama" placeholder="Masukkan nama lengkap">
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+            <div class="progress-text" id="progressText">0%</div>
+        </div>
+
+        <!-- Animated Tools -->
+        <div class="tools-row">
+            <span class="tool-icon">🛠️</span>
+            <span class="tool-icon">⚒️</span>
+            <span class="tool-icon">🔩</span>
+            <span class="tool-icon">🔨</span>
+        </div>
+
+        <!-- Info Card -->
+        <div class="info-card">
+            <p>Kami sedang melakukan upgrade sistem untuk memberikan pengalaman yang lebih baik. Mohon maaf atas ketidaknyamanannya.</p>
+            <div class="eta">⏱️ Estimasi selesai: <span id="countdown">02:00:00</span></div>
+        </div>
     </div>
 
-    <div class="field">
-      <label>Umur</label>
-      <input id="umur" type="number" placeholder="Contoh: 17">
+    <!-- Music Control -->
+    <div class="music-control" id="musicBtn" onclick="toggleMusic()">
+        <span class="music-icon" id="musicIcon">🔇</span>
     </div>
 
-    <div class="field">
-      <label>USN Hotel Hideaway</label>
-      <input id="usn" placeholder="Username HH kamu">
-    </div>
-<div class="field">
-  <label>Asal Kota / Kabupaten</label>
-  <input type="text" id="searchKota" placeholder="Cari kota / kabupaten..." autocomplete="off">
-  <div class="dropdown" id="dropdown"></div>
-  <input type="hidden" id="kotaTerpilih" name="kota">
-</div>
-
-
-    <div class="field">
-      <label>Alasan Bergabung</label>
-      <textarea id="alasan" placeholder="Jelaskan alasan kamu ingin bergabung contoh join ajah, seru seruan, karena admin ganteng"></textarea>
+    <div class="sound-waves" id="soundWaves">
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
     </div>
 
-    <div class="field">
-      <label>Admin WhatsApp Tujuan</label>
-      <select id="adminWA">
-        <option value="">Pilih Admin</option>
-        <option value="6289504498328">Admin 1 — 0895-0449-8328</option>
-        <option value="6285824168807">Admin 2 — 0858-2416-8807</option>
-        <option value="6281318685216">Admin 3 — 0813-1868-5216</option>
-      </select>
-    </div>
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <!-- Ganti URL di bawah dengan link audio Anda, atau gunakan base64 -->
+        <source src="data:audio/mp3;base64,//uQxAAAAANIAAAAAExBTUUzLjEwMKqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq//uQxAAAAANIAAAAAExBTUUzLjEwMKqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq" type="audio/mpeg">
+        <!-- Fallback: Browser Anda tidak mendukung audio -->
+    </audio>
 
-    <button class="btn-primary" onclick="cekForm()">DAFTAR SEKARANG</button>
+    <script>
+        // Create Particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
 
-  </div>
+        // Progress Bar Animation with Counter
+        let progress = 0;
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        
+        function updateProgress() {
+            progress += Math.random() * 2;
+            if (progress > 100) progress = 0;
+            progressBar.style.width = progress + '%';
+            progressText.textContent = Math.floor(progress) + '%';
+        }
+        setInterval(updateProgress, 100);
 
-  <div class="card-footer">
-    ۝ Satu Reign, Satu Kekuasaan ۝<br>
-    <span>Website by Hironi</span>
-  </div>
-</div>
+        // Countdown Timer
+        function updateCountdown() {
+            const countdownEl = document.getElementById('countdown');
+            let [hours, minutes, seconds] = countdownEl.textContent.split(':').map(Number);
+            
+            let totalSeconds = hours * 3600 + minutes * 60 + seconds;
+            if (totalSeconds > 0) {
+                totalSeconds--;
+                hours = Math.floor(totalSeconds / 3600);
+                minutes = Math.floor((totalSeconds % 3600) / 60);
+                seconds = totalSeconds % 60;
+                countdownEl.textContent = 
+                    String(hours).padStart(2, '0') + ':' +
+                    String(minutes).padStart(2, '0') + ':' +
+                    String(seconds).padStart(2, '0');
+            }
+        }
+        setInterval(updateCountdown, 1000);
 
-<div id="modal">
-  <div class="modal-box">
-    <h3>PERATURAN DEVIL REIGN</h3>
-    <div class="rules">
-      • Saling menghormati sesama member<br>
-      • Dilarang konflik & provokasi<br>
-      • Gunakan bahasa yang sopan<br>
-      • No spam, hoaks, atau link mencurigakan<br>
-      • Konten aman (NO 18+)<br>
-      • Patuh pada Admin & Owner
-    </div>
+        // Music Control
+        let isPlaying = false;
+        const music = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
+        const musicIcon = document.getElementById('musicIcon');
+        const soundWaves = document.getElementById('soundWaves');
 
-    <button class="btn-primary" onclick="kirim()">SETUJU & KIRIM</button>
-  </div>
-</div>
+        // Catatan: Autoplay diblokir browser, user harus klik tombol
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                musicIcon.textContent = '🔇';
+                musicBtn.classList.remove('playing');
+                soundWaves.classList.remove('active');
+                isPlaying = false;
+            } else {
+                // Untuk demo, kita buat suara beep sederhana menggunakan Web Audio API
+                // karena base64 audio dummy di atas tidak menghasilkan suara nyata
+                playConstructionSound();
+                musicIcon.textContent = '🔊';
+                musicBtn.classList.add('playing');
+                soundWaves.classList.add('active');
+                isPlaying = true;
+            }
+        }
 
-<script src="script.js"></script>
+        // Simulasi suara konstruksi dengan Web Audio API
+        let audioContext;
+        function playConstructionSound() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            
+            // Membuat suara beep berirama seperti alarm konstruksi
+            function beep() {
+                if (!isPlaying) return;
+                
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.value = 800;
+                oscillator.type = 'square';
+                
+                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.5);
+                
+                // Pola beep: beep-beep...pause...beep-beep
+                setTimeout(() => {
+                    if (isPlaying) {
+                        const osc2 = audioContext.createOscillator();
+                        const gain2 = audioContext.createGain();
+                        osc2.connect(gain2);
+                        gain2.connect(audioContext.destination);
+                        osc2.frequency.value = 800;
+                        osc2.type = 'square';
+                        gain2.gain.setValueAtTime(0.1, audioContext.currentTime);
+                        gain2.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+                        osc2.start(audioContext.currentTime);
+                        osc2.stop(audioContext.currentTime + 0.5);
+                    }
+                }, 600);
+                
+                setTimeout(beep, isPlaying ? 2000 : 0);
+            }
+            
+            beep();
+        }
+
+        // Typing Effect untuk subtitle
+        const texts = ["Memperbarui sistem...", "Mengoptimalkan database...", "Meningkatkan keamanan...", "Menambah fitur baru..."];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const blinkText = document.querySelector('.blink-text');
+
+        function typeEffect() {
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                blinkText.textContent = "🔨 " + currentText.substring(0, charIndex - 1) + " 🔨";
+                charIndex--;
+            } else {
+                blinkText.textContent = "🔨 " + currentText.substring(0, charIndex + 1) + " 🔨";
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeEffect, typeSpeed);
+        }
+
+        // Mulai typing effect setelah 3 detik
+        setTimeout(typeEffect, 3000);
+    </script>
 </body>
 </html>
