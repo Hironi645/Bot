@@ -1,0 +1,166 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>DEVIL REIGN — FROM HH</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Fire Particles Canvas -->
+  <canvas id="fireCanvas"></canvas>
+
+  <!-- DEVIL EYES ANIMATION -->
+  <div class="devil-eyes-container">
+    <div class="eye-wrapper left">
+      <div class="eye">
+        <div class="iris">
+          <div class="pupil"></div>
+          <div class="glow"></div>
+        </div>
+      </div>
+      <div class="eyelid"></div>
+    </div>
+    <div class="eye-wrapper right">
+      <div class="eye">
+        <div class="iris">
+          <div class="pupil"></div>
+          <div class="glow"></div>
+        </div>
+      </div>
+      <div class="eyelid"></div>
+    </div>
+  </div>
+
+  <!-- Loader -->
+  <div id="devil-loader">
+    <div class="loader-content">
+      <div class="devil-circle"></div>
+      <div class="loader-text">DEVIL REIGN</div>
+    </div>
+  </div>
+
+  <!-- Welcome Modal (After Loading) -->
+  <div id="promo-modal">
+    <div class="promo-box">
+      <div class="promo-icon">☠️</div>
+      <h2 class="promo-title glitch-text" data-text="SELAMAT DATANG">SELAMAT DATANG</h2>
+      <p class="promo-subtitle">WEBSITE INTRO FROM HH</p>
+      
+      <div class="promo-welcome-text">
+        <p>Selamat datang di website resmi Devil Reign.</p>
+        <p>Silakan daftar dengan mengisi form registrasi member.</p>
+      </div>
+      
+      <button class="promo-btn" onclick="closePromo()">LANJUTKAN KE FORM</button>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="devil-toast">
+    <div class="toast-box">
+      <span class="toast-icon">☠️</span>
+      <span id="toast-message"></span>
+    </div>
+  </div>
+
+  <!-- Main Card -->
+  <div class="card">
+    <div class="card-header">
+      <h1 class="glitch-text" data-text="۝ DEVIL REIGN ۝">۝ DEVIL REIGN ۝</h1>
+      <p class="glow-pulse">OFFICIAL MEMBER REGISTRATION</p>
+    </div>
+
+    <div class="card-body">
+
+      <div class="field fade-in-up" style="animation-delay: 0.1s">
+        <label class="field-label">Nama Lengkap</label>
+        <input id="nama" class="devil-input" placeholder="Masukkan nama lengkap">
+      </div>
+
+      <div class="field fade-in-up" style="animation-delay: 0.2s">
+        <label class="field-label">Umur</label>
+        <input id="umur" class="devil-input" type="number" placeholder="Contoh: 17">
+      </div>
+
+      <div class="field fade-in-up" style="animation-delay: 0.3s">
+        <label class="field-label">USN Hotel Hideaway</label>
+        <input id="usn" class="devil-input" placeholder="Username HH kamu">
+      </div>
+
+      <div class="field fade-in-up location-field" style="animation-delay: 0.4s">
+        <label class="field-label">Asal Kota / Lokasi</label>
+        
+        <!-- Auto Location Button -->
+        <button type="button" class="location-btn" id="btnLokasi" onclick="getLocation()">
+          <span>📍 Dapatkan Lokasi Otomatis</span>
+        </button>
+        
+        <!-- Location Info Display -->
+        <div class="location-info" id="infoLokasi">
+          <span class="icon">✓</span>
+          <span id="teksLokasi"></span>
+        </div>
+        
+        <!-- Manual Input (Hidden by default, toggleable) -->
+        <div id="manualInput" style="display: none;">
+          <input type="text" id="searchKota" class="devil-input" placeholder="Ketik nama kota manual..." style="margin-top: 10px;">
+        </div>
+        
+        <div class="manual-toggle" onclick="toggleManual()">Atau ketik manual</div>
+        
+        <!-- Hidden Inputs -->
+        <input type="hidden" id="kotaTerpilih" name="kota">
+        <input type="hidden" id="latCoord" name="latitude">
+        <input type="hidden" id="lngCoord" name="longitude">
+      </div>
+
+      <div class="field fade-in-up" style="animation-delay: 0.5s">
+        <label class="field-label">Alasan Bergabung</label>
+        <textarea id="alasan" class="devil-textarea" placeholder="Jelaskan alasan kamu ingin bergabung..."></textarea>
+      </div>
+
+      <div class="field fade-in-up" style="animation-delay: 0.6s">
+        <label class="field-label">Admin WhatsApp Tujuan</label>
+        <select id="adminWA" class="devil-select">
+          <option value="">Pilih Admin</option>
+          <option value="6289504498328">Admin 1 — 0895-0449-8328</option>
+          <option value="6285824168807">Admin 2 — 0858-2416-8807</option>
+          <option value="6281318685216">Admin 3 — 0813-1868-5216</option>
+        </select>
+      </div>
+
+      <button class="btn-primary float-animation" onclick="cekForm()">DAFTAR SEKARANG</button>
+
+    </div>
+
+    <div class="card-footer">
+      ۝ Satu Reign, Satu Kekuasaan ۝<br>
+      <span>Website by Hironi</span>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal">
+    <div class="modal-box">
+      <h3 class="glitch-text" data-text="PERATURAN DEVIL REIGN">PERATURAN DEVIL REIGN</h3>
+      <div class="divider"></div>
+      <div class="rules">
+        <div class="rule-item" style="animation-delay: 0.1s">Saling menghormati sesama member</div>
+        <div class="rule-item" style="animation-delay: 0.2s">Dilarang konflik & provokasi</div>
+        <div class="rule-item" style="animation-delay: 0.3s">Gunakan bahasa yang sopan</div>
+        <div class="rule-item" style="animation-delay: 0.4s">No spam, hoaks, atau link mencurigakan</div>
+        <div class="rule-item" style="animation-delay: 0.5s">Konten aman (NO 18+)</div>
+        <div class="rule-item" style="animation-delay: 0.6s">Patuh pada Admin & Owner</div>
+      </div>
+
+      <button class="btn-primary" onclick="kirim()">SETUJU & KIRIM</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
